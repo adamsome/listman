@@ -1,6 +1,11 @@
 {
   "name": "listman",
   "version": "0.1.0",
+  "author": "Adam Some",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamsome/listman.git"
+  },
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.18",
