@@ -59,6 +59,7 @@
     "ramda": "^0.26.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
+    "react-minor-ui": "^1.0.2",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.0"
   },

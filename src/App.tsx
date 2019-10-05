@@ -1,4 +1,5 @@
 import React from 'react'
+import Starrate from 'react-minor-ui'
 import './App.css'
 import logo from './logo.svg'
 
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
+        <Starrate maxRating={4} />
       </header>
     </div>
   )
