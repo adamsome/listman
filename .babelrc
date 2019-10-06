@@ -1,3 +1,10 @@
 {
-  "plugins": ["macros"]
+  "env": {
+    "production": {
+      "plugins": ["emotion"]
+    },
+    "development": {
+      "plugins": [["emotion", { "sourceMap": true }, "macros"]]
+    }
+  }
 }

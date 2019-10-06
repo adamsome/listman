@@ -1,15 +1,10 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import React, { MouseEvent } from 'react'
-import styled from 'styled-components/macro'
 
 type RowProps = typeof defaultProps & {
   onClick?: (event: React.MouseEvent) => void
   children: React.ReactNode
-}
-
-type BoxProps = RowProps & {
-  onKeyDown?: (event: React.KeyboardEvent) => void
-  role?: string
-  tabIndex?: number
 }
 
 const defaultProps = {}
@@ -24,21 +19,27 @@ const onKeyDown = (props: RowProps, event: React.KeyboardEvent) => {
 }
 
 const Row = (props: RowProps) => {
-  const _props: BoxProps = {
+  const _props = {
     onKeyDown: props.onClick ? onKeyDown.bind(null, props) : undefined,
     role: props.onClick ? 'button' : undefined,
     tabIndex: props.onClick ? 0 : undefined,
     ...props,
   }
-  return <Box {..._props} />
-}
 
-const Box = styled.div<BoxProps>`
-  background-color: #fbfbfb;
-  border: 1px solid #f0f0f0;
-  cursor: ${props => props.onClick && 'pointer'};
-  display: flex;
-`
+  const cursor = props.onClick ? 'pointer' : 'auto'
+
+  return (
+    <div
+      css={css`
+        background-color: #fbfbfb;
+        border: 1px solid #f0f0f0;
+        cursor: ${cursor};
+        display: flex;
+      `}
+      {..._props}
+    />
+  )
+}
 
 Row.defaultProps = defaultProps
 

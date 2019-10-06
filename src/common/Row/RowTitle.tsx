@@ -1,5 +1,6 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import React from 'react'
-import styled from 'styled-components/macro'
 
 type RowTitleProps = typeof defaultProps & {
   children: React.ReactNode
@@ -10,15 +11,20 @@ const defaultProps = {}
 const RowTitle = (props: RowTitleProps) => {
   const { children, ...rest } = props
 
-  return <Title {...rest}>{children}</Title>
+  return (
+    <h3
+      css={css`
+        color: black;
+        font-size: 2rem;
+        font-weight: 900;
+        margin: 0;
+      `}
+      {...rest}
+    >
+      {children}
+    </h3>
+  )
 }
-
-const Title = styled.h3`
-  color: black;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin: 0;
-`
 
 RowTitle.defaultProps = defaultProps
 

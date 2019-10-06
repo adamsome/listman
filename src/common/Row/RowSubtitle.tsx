@@ -1,5 +1,6 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import React from 'react'
-import styled from 'styled-components/macro'
 
 type RowSubtitleProps = typeof defaultProps & {
   children: React.ReactNode
@@ -10,16 +11,20 @@ const defaultProps = {}
 const RowSubtitle = (props: RowSubtitleProps) => {
   const { children, ...rest } = props
 
-  return <Title {...rest}>{children}</Title>
+  return (
+    <h4
+      css={css`
+        color: black;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+      `}
+      {...rest}
+    >
+      {children}
+    </h4>
+  )
 }
-
-// TODO: Theme
-const Title = styled.h4`
-  color: black;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin: 0;
-`
 
 RowSubtitle.defaultProps = defaultProps
 
