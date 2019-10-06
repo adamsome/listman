@@ -12,16 +12,16 @@ import sampleArtImage from './sample-art.png'
 export default {
   component: Row,
   title: 'Row',
-  excludeStories: ['actions'],
+  excludeStories: ['actions', 'createRow'],
 }
 
 export const actions = {
   onClick: action('onClick'),
 }
 
-export const image = () => (
+export const createRow = () => (
   <Row {...actions}>
-    <RowImage src={sampleArtImage} height="120px" />
+    <RowImage src={sampleArtImage} height="120px" alt="Sample Art" />
     <RowContent>
       <RowTitle>Title</RowTitle>
       <RowSubtitle>Subtitle</RowSubtitle>
@@ -32,18 +32,8 @@ export const image = () => (
     </RowActions>
   </Row>
 )
+
+export const image = () => createRow()
 export const lowWidth = () => (
-  <div style={{ width: '400px' }}>
-    <Row {...actions}>
-      <RowImage src={sampleArtImage} height="120px" />
-      <RowContent>
-        <RowTitle>Title</RowTitle>
-        <RowSubtitle>Subtitle</RowSubtitle>
-        Content
-      </RowContent>
-      <RowActions>
-        <Starrate />
-      </RowActions>
-    </Row>
-  </div>
+  <div style={{ width: '400px' }}>{createRow()}</div>
 )

@@ -10,21 +10,27 @@ const defaultProps = {}
 const RowImage = (props: RowImageProps) => {
   // TODO: Theme margins
   return (
-    <img
+    <div
       css={css`
-        display: block;
-        max-width: 100%;
         margin-left: 1rem;
         margin-right: 1rem;
-        &:first-child {
+        &:first-of-type {
           margin-left: 0;
         }
-        &:last-child {
+        &:last-of-type {
           margin-right: 0;
         }
       `}
-      {...props}
-    />
+    >
+      <img
+        css={css`
+          display: block;
+          max-width: 100%;
+        `}
+        alt={props.alt || ''}
+        {...props}
+      />
+    </div>
   )
 }
 

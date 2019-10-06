@@ -20,7 +20,7 @@ const RowContent = (props: RowContentProps) => {
 
 const Wrapper = styled(RowSection)`
   flex: 1;
-  &:first-child {
+  &:first-of-type {
     margin-left: 1rem;
   }
 `
