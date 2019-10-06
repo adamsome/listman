@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Row__Box-sc-11xu95d-0 koapXh"
+>
+  content
+</div>
+`;
