@@ -2,13 +2,13 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 
-type RowTitleProps = typeof defaultProps & {
+type Props = typeof defaultProps & {
   children: React.ReactNode
 }
 
 const defaultProps = {}
 
-const RowTitle = (props: RowTitleProps) => {
+const RowTitle = (props: Props) => {
   const { children, ...rest } = props
 
   return (

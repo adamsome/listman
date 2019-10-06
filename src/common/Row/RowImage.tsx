@@ -2,12 +2,12 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 
-type RowImageProps = typeof defaultProps &
+type Props = typeof defaultProps &
   React.PropsWithoutRef<JSX.IntrinsicElements['img']> & {}
 
 const defaultProps = {}
 
-const RowImage = (props: RowImageProps) => {
+const RowImage = (props: Props) => {
   // TODO: Theme margins
   return (
     <div

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
-type RowSectionProps = typeof defaultProps &
+type Props = typeof defaultProps &
   React.PropsWithoutRef<JSX.IntrinsicElements['div']> & {}
 
 const defaultProps = {}
 
-const RowSection = (props: RowSectionProps) => (
+const RowSection = (props: Props) => (
   <div
     css={css`
       margin-right: 1rem;

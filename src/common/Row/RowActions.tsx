@@ -1,13 +1,13 @@
 import React from 'react'
 import RowSection from './RowSection'
 
-type RowActionsProps = typeof defaultProps & {
+type Props = typeof defaultProps & {
   children: React.ReactNode
 }
 
 const defaultProps = {}
 
-const RowActions = (props: RowActionsProps) => {
+const RowActions = (props: Props) => {
   const { children, ...rest } = props
 
   return <RowSection {...rest}>{children}</RowSection>

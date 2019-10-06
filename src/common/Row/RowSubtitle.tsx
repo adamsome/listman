@@ -2,13 +2,13 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 
-type RowSubtitleProps = typeof defaultProps & {
+type Props = typeof defaultProps & {
   children: React.ReactNode
 }
 
 const defaultProps = {}
 
-const RowSubtitle = (props: RowSubtitleProps) => {
+const RowSubtitle = (props: Props) => {
   const { children, ...rest } = props
 
   return (

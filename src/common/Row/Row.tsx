@@ -2,14 +2,14 @@
 import { css, jsx } from '@emotion/core'
 import React, { MouseEvent } from 'react'
 
-type RowProps = typeof defaultProps & {
+type Props = typeof defaultProps & {
   onClick?: (event: React.MouseEvent) => void
   children: React.ReactNode
 }
 
 const defaultProps = {}
 
-const onKeyDown = (props: RowProps, event: React.KeyboardEvent) => {
+const onKeyDown = (props: Props, event: React.KeyboardEvent) => {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault()
     if (props.onClick) {
@@ -18,7 +18,7 @@ const onKeyDown = (props: RowProps, event: React.KeyboardEvent) => {
   }
 }
 
-const Row = (props: RowProps) => {
+const Row = (props: Props) => {
   const _props = {
     onKeyDown: props.onClick ? onKeyDown.bind(null, props) : undefined,
     role: props.onClick ? 'button' : undefined,

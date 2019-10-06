@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 import React from 'react'
 import RowSection from './RowSection'
 
-type RowContentProps = typeof defaultProps & {
+type Props = typeof defaultProps & {
   children: React.ReactNode
 }
 
 const defaultProps = {}
 
-const RowContent = (props: RowContentProps) => {
+const RowContent = (props: Props) => {
   const { children, ...rest } = props
 
   return (
