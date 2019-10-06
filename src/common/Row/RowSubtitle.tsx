@@ -16,7 +16,7 @@ const RowSubtitle = (props: RowSubtitleProps) => {
 // TODO: Theme
 const Title = styled.h4`
   color: black;
-  font-size: 14rem;
+  font-size: 1.5rem;
   font-weight: 400;
   margin: 0;
 `

@@ -15,7 +15,7 @@ const RowTitle = (props: RowTitleProps) => {
 
 const Title = styled.h3`
   color: black;
-  font-size: 14rem;
+  font-size: 1.5rem;
   font-weight: 400;
   margin: 0;
 `
