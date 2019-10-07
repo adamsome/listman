@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import RowSection from './RowSection'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode
@@ -18,8 +17,11 @@ const RowContent = (props: Props) => {
   )
 }
 
-const Wrapper = styled(RowSection)`
+const Wrapper = styled.div`
   flex: 1;
+  margin-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   &:first-of-type {
     margin-left: 1rem;
   }
