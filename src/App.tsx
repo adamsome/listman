@@ -1,7 +1,7 @@
 import React from 'react'
 import Starrate from 'react-minor-ui'
 import './App.css'
-import { ThemeProvider } from './common/theming'
+import ThemeProvider from './common/theming/ThemeProvider'
 import logo from './logo.svg'
 
 const App: React.FC = () => {

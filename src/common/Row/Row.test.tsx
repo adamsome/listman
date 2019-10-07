@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import { ThemeProvider } from '../theming'
+import ThemeProvider from '../theming/ThemeProvider'
 import { createRow } from './Row.stories'
 
 const create = () => <ThemeProvider>{createRow()}</ThemeProvider>

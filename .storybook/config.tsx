@@ -3,7 +3,8 @@ import { addDecorator, addParameters, configure } from '@storybook/react'
 import { themes } from '@storybook/theming'
 import React, { useLayoutEffect, useState } from 'react'
 import requireContext from 'require-context.macro'
-import { THEME_BLACK, THEME_WHITE, ThemeProvider } from '../src/common/theming'
+import { THEME_BLACK, THEME_WHITE } from '../src/common/theming'
+import ThemeProvider from '../src/common/theming/ThemeProvider'
 import '../src/index.css'
 
 addParameters({

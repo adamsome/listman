@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { useTheme } from 'emotion-theming'
 import React, { MouseEvent } from 'react'
-import { Theme } from '../theming'
+import { useTheme } from '../theming'
 
 type Props = typeof defaultProps & {
   onClick?: (event: React.MouseEvent) => void
@@ -28,7 +27,7 @@ const Row = (props: Props) => {
     ...props,
   }
 
-  const theme = useTheme<Theme>()
+  const theme = useTheme()
   const cursor = props.onClick ? 'pointer' : 'auto'
 
   return (

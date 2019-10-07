@@ -1,5 +1,5 @@
-import styled from '@emotion/styled'
 import React from 'react'
+import styled from '../theming/styled'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode

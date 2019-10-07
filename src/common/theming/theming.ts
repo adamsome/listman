@@ -1,3 +1,5 @@
+import { useTheme as emotionUseTheme } from 'emotion-theming'
+
 export type ThemeMode = 'light' | 'dark'
 
 interface ThemeFonts {
@@ -24,6 +26,7 @@ export interface Theme {
 
   body: string
   bodyInverse: string
+  strong: string
   subtle: string
   hint: string
 
@@ -52,6 +55,12 @@ export interface Theme {
 
   animation: ThemeAnimations
 }
+
+export interface HasTheme {
+  theme: Theme
+}
+
+export const useTheme = () => emotionUseTheme<Theme>()
 
 export const BASE_FONT_SIZE = 14
 

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import styled from '@emotion/styled'
 import React, { Children, cloneElement } from 'react'
-import { Theme } from '../theming'
+import { HasTheme } from '../theming'
+import styled from '../theming/styled'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode
@@ -49,14 +49,20 @@ const RowTitle = (props: Props) => {
   )
 }
 
-const Title = styled.h3<{ theme?: Theme }>`
-  color: ${props => props.theme.body};
-  font-size: ${props => props.theme.font.size.big};
-  font-weight: ${props => props.theme.font.weightBold};
-  margin: 0;
+const headerStyle = (props: HasTheme) =>
+  css`
+    color: ${props.theme.strong};
+    font-size: ${props.theme.font.size.big};
+    font-weight: ${props.theme.font.weightBold};
+    margin: 0;
+  `
+
+const Title = styled.h3`
+  ${headerStyle}
 `
 
-const Subtitle = styled(Title)`
+const Subtitle = styled.h4`
+  ${headerStyle}
   color: ${props => props.theme.subtle};
 `
 

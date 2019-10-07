@@ -4,8 +4,9 @@ const THEME_BLACK: Theme = {
   name: 'Black',
   mode: 'dark',
 
-  body: 'hsl(0, 0%, 88%)',
+  body: 'hsl(0, 0%, 75%)',
   bodyInverse: 'hsl(0, 0%, 13%)',
+  strong: 'hsl(0, 0%, 88%)',
   subtle: 'hsl(0, 0%, 50%)',
   hint: 'hsl(0, 0%, 26%)',
 

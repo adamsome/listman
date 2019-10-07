@@ -6,6 +6,7 @@ const THEME_WHITE: Theme = {
 
   body: 'hsl(0, 0%, 13%)',
   bodyInverse: 'hsl(0, 0%, 88%)',
+  strong: 'hsl(0, 0%, 13%)',
   subtle: 'hsl(247, 5%, 67%)',
   hint: 'hsl(0, 0%, 76%)',
 
