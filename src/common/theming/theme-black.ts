@@ -20,14 +20,14 @@ const THEME_BLACK: Theme = {
     body: 'hsl(0, 0%, 0%)',
     bodyDim: 'hsl(0, 0%, 13%)',
     bodyLit: 'hsl(0, 0%, 26%)',
-    content: 'hsl(0, 0%, 38%)',
-    contentDim: 'hsl(0, 0%, 50%)',
-    contentLit: 'hsl(0, 0%, 66%)',
+    content: 'hsl(0, 0%, 0%)',
+    contentDim: 'hsl(0, 0%, 13%)',
+    contentLit: 'hsl(0, 0%, 26%)',
   },
 
   border: {
     body: 'hsl(0, 0%, 13%)',
-    content: 'hsl(0, 0%, 50%)',
+    content: 'hsl(0, 0%, 13%)',
   },
 
   font: BASE_FONTS,

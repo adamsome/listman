@@ -1,13 +1,12 @@
-import { ThemeProvider } from 'emotion-theming'
 import React from 'react'
 import Starrate from 'react-minor-ui'
 import './App.css'
-import { getThemeStore } from './common/theming/theme-store'
+import { ThemeProvider } from './common/theming'
 import logo from './logo.svg'
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={getThemeStore()}>
+    <ThemeProvider>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
