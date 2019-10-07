@@ -1,70 +1,75 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React, { Children, cloneElement } from 'react'
-import { HasTheme } from '../theming'
+import FlexBox, { FlexItem } from '../Flexbox'
 import styled from '../theming/styled'
+import Truncated, { TruncatedProps } from '../Truncated'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode
   subtitle?: string
+  subtitleLines?: number
   actions?: React.ReactElement | React.ReactElement[]
 }
 
-const defaultProps = {}
+const defaultProps = {
+  lines: 1 as number,
+}
 
 const RowTitle = (props: Props) => {
-  const { children, subtitle, actions, ...rest } = props
+  const { children, subtitle, subtitleLines, actions, lines, ...rest } = props
 
   const _actions = actions
     ? Children.map(actions, (a, i) => cloneElement(a, { key: i }))
     : null
 
   return (
-    <div
-      css={css`
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 1rem;
-      `}
-      {...rest}
-    >
-      <div
-        css={css`
-          flex: 1 1 auto;
-          display: block;
-          margin-right: ${actions ? '1rem' : null};
-        `}
-      >
-        <Title>{children}</Title>
-        {subtitle && <Subtitle>{subtitle}</Subtitle>}
-      </div>
-      <div
-        css={css`
-          flex: 0 0 auto;
-        `}
-      >
-        {_actions}
-      </div>
-    </div>
+    <Wrapper alignItems="flex-start" {...rest}>
+      <FlexItem flex="auto" css={titlesWrapper(actions != null)}>
+        <Title lines={lines}>{children}</Title>
+        {subtitle && <Subtitle lines={subtitleLines || 1}>{subtitle}</Subtitle>}
+      </FlexItem>
+      <FlexItem flex="none">{_actions}</FlexItem>
+    </Wrapper>
   )
 }
 
-const headerStyle = (props: HasTheme) =>
-  css`
-    color: ${props.theme.strong};
-    font-size: ${props.theme.font.size.big};
-    font-weight: ${props.theme.font.weightBold};
-    margin: 0;
-  `
-
-const Title = styled.h3`
-  ${headerStyle}
+const Wrapper = styled(FlexBox)`
+  margin-bottom: ${props => props.theme.space.stackTight};
 `
 
-const Subtitle = styled.h4`
-  ${headerStyle}
+const titlesWrapper = (hasActions: boolean) => css`
+  margin-right: ${hasActions ? '1rem' : null};
+  display: block;
+  min-width: 0;
+`
+
+const StyledTitle = styled.h4`
+  color: ${props => props.theme.strong};
+  font-size: ${props => props.theme.font.size.big};
+  font-weight: ${props => props.theme.font.weightBold};
+  margin: 0;
+`
+
+const Title = (props: TruncatedProps) => {
+  return (
+    <StyledTitle>
+      <Truncated {...props} />
+    </StyledTitle>
+  )
+}
+
+const StyledSubtitle = styled(StyledTitle)`
   color: ${props => props.theme.subtle};
 `
+
+const Subtitle = (props: TruncatedProps) => {
+  return (
+    <StyledSubtitle>
+      <Truncated {...props} />
+    </StyledSubtitle>
+  )
+}
 
 RowTitle.defaultProps = defaultProps
 

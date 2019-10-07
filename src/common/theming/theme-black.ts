@@ -1,4 +1,9 @@
-import { BASE_ANIMATIONS, BASE_FONTS, Theme } from './theming'
+import {
+  BASE_THEME_ANIMATIONS,
+  BASE_THEME_FONTS,
+  BASE_THEME_SPACE,
+  Theme,
+} from './theming'
 
 const THEME_BLACK: Theme = {
   name: 'Black',
@@ -31,8 +36,9 @@ const THEME_BLACK: Theme = {
     content: 'hsl(0, 0%, 13%)',
   },
 
-  font: BASE_FONTS,
-  animation: BASE_ANIMATIONS,
+  space: BASE_THEME_SPACE,
+  font: BASE_THEME_FONTS,
+  animation: BASE_THEME_ANIMATIONS,
 }
 
 export default THEME_BLACK

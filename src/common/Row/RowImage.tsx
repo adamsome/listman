@@ -18,8 +18,8 @@ const RowImage = (props: Props) => {
 }
 
 const ImageWrapper = styled.div`
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: ${props => props.theme.space.inset};
+  margin-right: ${props => props.theme.space.inset};
   &:first-of-type {
     margin-left: 0;
   }

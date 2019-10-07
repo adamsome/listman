@@ -1,4 +1,7 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
+import { FlexItem } from '../Flexbox'
 import styled from '../theming/styled'
 
 type Props = typeof defaultProps & {
@@ -11,20 +14,20 @@ const RowContent = (props: Props) => {
   const { children, ...rest } = props
 
   return (
-    <Wrapper {...rest}>
+    <StyledFlexItem flex="1" {...rest}>
       <Content>{children}</Content>
-    </Wrapper>
+    </StyledFlexItem>
   )
 }
 
-const Wrapper = styled.div`
-  flex: 1;
-  margin-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+const StyledFlexItem = styled(FlexItem)`
+  margin-right: ${props => props.theme.space.inset};
+  padding-top: ${props => props.theme.space.stack};
+  padding-bottom: ${props => props.theme.space.stack};
   &:first-of-type {
-    margin-left: 1rem;
+    margin-left: ${props => props.theme.space.inset};
   }
+  overflow: hidden;
 `
 
 const Content = styled.div`

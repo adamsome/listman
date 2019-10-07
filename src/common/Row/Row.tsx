@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React, { MouseEvent } from 'react'
+import FlexBox from '../Flexbox'
 import { useTheme } from '../theming'
 
 type Props = typeof defaultProps & {
@@ -31,12 +32,11 @@ const Row = (props: Props) => {
   const cursor = props.onClick ? 'pointer' : 'auto'
 
   return (
-    <div
+    <FlexBox
       css={css`
         background-color: ${theme.bg.content};
         border: 1px solid ${theme.border.content};
         cursor: ${cursor};
-        display: flex;
       `}
       {..._props}
     />

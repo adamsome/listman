@@ -2,7 +2,14 @@ import { useTheme as emotionUseTheme } from 'emotion-theming'
 
 export type ThemeMode = 'light' | 'dark'
 
-interface ThemeFonts {
+export interface ThemeSpace {
+  inset: string
+  insetTight: string
+  stack: string
+  stackTight: string
+}
+
+export interface ThemeFonts {
   family: string
   weight: number
   weightBold: number
@@ -51,6 +58,8 @@ export interface Theme {
     content: string
   }
 
+  space: ThemeSpace
+
   font: ThemeFonts
 
   animation: ThemeAnimations
@@ -62,12 +71,19 @@ export interface HasTheme {
 
 export const useTheme = () => emotionUseTheme<Theme>()
 
+export const BASE_THEME_SPACE: ThemeSpace = {
+  inset: '1rem',
+  insetTight: '0.75rem',
+  stack: '1rem',
+  stackTight: '0.75rem',
+}
+
 export const BASE_FONT_SIZE = 14
 
 const calcRemFontSize = (size: number, baseSize = BASE_FONT_SIZE): string =>
   `${(size / baseSize).toFixed(6)}rem`
 
-export const BASE_FONTS: ThemeFonts = {
+export const BASE_THEME_FONTS: ThemeFonts = {
   family:
     `-apple-system, '.SFNSText-Regular', ` +
     `'San Francisco', BlinkMacSystemFont, ` +
@@ -86,6 +102,6 @@ export const BASE_FONTS: ThemeFonts = {
   },
 }
 
-export const BASE_ANIMATIONS: ThemeAnimations = {
+export const BASE_THEME_ANIMATIONS: ThemeAnimations = {
   easing: 'cubic-bezier(0.175, 0.885, 0.335, 1.05)',
 }
