@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import './index.css'
-
 import App from './App'
+import { initThemeStore } from './common/theming/theme-store'
+import './index.css'
 import * as serviceWorker from './serviceWorker'
+
+initThemeStore()
 
 ReactDOM.render(<App />, document.getElementById('root'))
 

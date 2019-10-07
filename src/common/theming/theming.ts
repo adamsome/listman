@@ -28,6 +28,7 @@ export interface ThemeAnimations {
 }
 
 export interface Theme {
+  id: string | number
   name: string
   mode: ThemeMode
 
@@ -73,9 +74,9 @@ export const useTheme = () => emotionUseTheme<Theme>()
 
 export const BASE_THEME_SPACE: ThemeSpace = {
   inset: '1rem',
-  insetTight: '0.75rem',
-  stack: '1rem',
-  stackTight: '0.75rem',
+  insetTight: '0.5rem',
+  stack: '0.75rem',
+  stackTight: '0.5rem',
 }
 
 export const BASE_FONT_SIZE = 14

@@ -36,7 +36,10 @@ const Row = (props: Props) => {
       css={css`
         background-color: ${theme.bg.content};
         border: 1px solid ${theme.border.content};
+        color: ${theme.body};
         cursor: ${cursor};
+        font-size: ${theme.font.size.body};
+        text-align: start;
       `}
       {..._props}
     />

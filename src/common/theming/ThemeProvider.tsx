@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming'
-import React from 'react'
-import { getThemeStore } from './theme-store'
+import React, { useEffect, useState } from 'react'
+import { getThemeState } from './theme-store'
+import THEME_WHITE from './theme-white'
 import { Theme } from './theming'
 
 type Props = typeof defaultProps & {
@@ -13,7 +14,15 @@ type Props = typeof defaultProps & {
 const defaultProps = {}
 
 const ThemeProvider = (props: Props) => {
-  const theme = props.theme || getThemeStore()
+  const [currentTheme, setCurrentTheme] = useState(THEME_WHITE)
+
+  useEffect(() => {
+    const subscription = getThemeState().subscribe(setCurrentTheme)
+    return () => subscription.unsubscribe()
+  }, [])
+
+  const theme = props.theme || currentTheme
+
   return (
     <EmotionThemeProvider theme={theme}>
       <div

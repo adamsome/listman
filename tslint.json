@@ -9,7 +9,7 @@
     "max-line-length": { "options": 120 },
     "member-access": [true, "no-public"],
     "no-implicit-dependencies": [true, "dev"],
-    "no-submodule-imports": [true, "styled-components/macro"],
+    "no-submodule-imports": [true, "styled-components/macro", "rxjs/operators"],
     "object-literal-sort-keys": false,
     "quotemark": false,
     "semicolon": [true, "never"],

@@ -64,7 +64,8 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-minor-ui": "^1.0.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "rxjs": "^6.5.3"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.2.1",

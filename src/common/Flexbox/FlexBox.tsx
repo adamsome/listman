@@ -39,7 +39,6 @@ type Props = FlexItemProps & {
     | 'start'
     | 'end'
     | 'baseline'
-  /** Flexbox item props */
 }
 
 /**
@@ -52,7 +51,7 @@ const FlexBox = styled(FlexItem)<Props>`
   flex-direction: ${props => props.direction};
   flex-wrap: ${props => props.wrap};
   flex-flow: ${props => props.flow};
-  justify-content: ${props => props.alignItems};
+  justify-content: ${props => props.justify};
   align-items: ${props => props.alignItems};
   align-content: ${props => props.alignContent};
 `

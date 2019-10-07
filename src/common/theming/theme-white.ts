@@ -6,6 +6,7 @@ import {
 } from './theming'
 
 const THEME_WHITE: Theme = {
+  id: 'white',
   name: 'White',
   mode: 'light',
 
