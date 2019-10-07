@@ -53,7 +53,9 @@ export interface Theme {
   animation: ThemeAnimations
 }
 
-const calcRemFontSize = (size: number, baseSize = 14): string =>
+export const BASE_FONT_SIZE = 14
+
+const calcRemFontSize = (size: number, baseSize = BASE_FONT_SIZE): string =>
   `${(size / baseSize).toFixed(6)}rem`
 
 export const BASE_FONTS: ThemeFonts = {
