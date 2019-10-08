@@ -11,7 +11,7 @@ import sampleArtImage from './sample-art.png'
 export default {
   component: Row,
   title: 'Row',
-  excludeStories: ['actions', 'createRow'],
+  excludeStories: ['actions', 'createRow', 'SAMPLE_ROWS'],
 }
 
 export const actions = {
@@ -20,24 +20,73 @@ export const actions = {
 
 const longTitle = 'Long title of an type of artifact that is being rated'
 const shortSubtitle = 'Short subtitle'
-const longContent =
+const longDescription =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis rhoncus risus, ut faucibus dui. Aenean bibendum dui et finibus euismod. Nullam luctus nisl at ipsum faucibus, sed volutpat metus ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent dictum ligula at sollicitudin venenatis. Fusce facilisis tincidunt accumsan. Vestibulum vitae efficitur urna. Maecenas aliquam accumsan scelerisque. Morbi molestie, justo sed pretium gravida, erat nulla mattis turpis, non aliquam sapien orci vel arcu. Curabitur id mauris a odio pharetra varius eget quis ipsum. Donec ipsum tellus, bibendum quis maximus eu, facilisis vitae nibh. Maecenas euismod mauris at orci eleifend efficitur.'
 
-export const createRow = (
-  title = longTitle,
-  subtitle = shortSubtitle,
-  content = longContent
-) => (
-  <Row {...actions}>
-    <RowImage src={sampleArtImage} height="114px" alt="Sample Art" />
-    <RowContent>
-      <RowTitle subtitle={subtitle} actions={<Starrate />}>
-        {title}
-      </RowTitle>
-      <Truncated lines={2}>{content}</Truncated>
-    </RowContent>
-  </Row>
-)
+interface SampleRow {
+  title: string
+  subtitle?: string
+  description?: string
+  rating?: number
+}
+
+export const SAMPLE_ROWS: Record<string, SampleRow> = {
+  short: {
+    title: 'Title',
+    subtitle: 'Subtitle',
+    description: 'Description',
+  },
+  long: {
+    title: longTitle,
+    subtitle: shortSubtitle,
+    description: longDescription,
+  },
+  noSubtitle: {
+    title: 'Title with no subtitle',
+    description: longDescription,
+  },
+  color1: {
+    title: 'Red Cow Mountain',
+    subtitle: 'Green Bull Lake',
+  },
+  color2: {
+    title: 'Blue Deer Ocean',
+    subtitle: 'Yellow Doe Sky',
+  },
+  color3: {
+    title: 'Orange Chicken Plains',
+    subtitle: 'Purple Rooster Canyon',
+  },
+  color4: {
+    title: 'Pink Bear Valley',
+    subtitle: 'Forest Beaver Hill',
+  },
+  color5: {
+    title: 'Black Lion River',
+    subtitle: 'White Tiger Desert',
+  },
+}
+
+const DEFAULT_SAMPLE: SampleRow = {
+  title: longTitle,
+  subtitle: shortSubtitle,
+  description: 'No description.',
+}
+
+export const createRow = (row: Partial<SampleRow> = DEFAULT_SAMPLE) => {
+  const { title, subtitle, description, rating } = { ...DEFAULT_SAMPLE, ...row }
+  return (
+    <Row {...actions}>
+      <RowImage src={sampleArtImage} height="114px" alt="Sample Art" />
+      <RowContent>
+        <RowTitle subtitle={subtitle} actions={<Starrate rating={rating} />}>
+          {title}
+        </RowTitle>
+        <Truncated lines={2}>{description}</Truncated>
+      </RowContent>
+    </Row>
+  )
+}
 
 export const image = () => createRow()
 export const lowWidth = () => (

@@ -35,7 +35,12 @@ const RowTitle = (props: Props) => {
 }
 
 const Wrapper = styled(FlexBox)`
-  margin-bottom: ${props => props.theme.space.stackTight};
+  &:not(:last-of-type) {
+    margin-bottom: ${props => props.theme.space.stackSmall};
+  }
+  &:not(:first-of-type) {
+    margin-top: ${props => props.theme.space.stackSmall};
+  }
 `
 
 const titlesWrapper = (hasActions: boolean) => css`

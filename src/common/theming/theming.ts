@@ -4,9 +4,16 @@ export type ThemeMode = 'light' | 'dark'
 
 export interface ThemeSpace {
   inset: string
-  insetTight: string
+  insetBig: string
+  insetHuge: string
+  insetSmall: string
+  insetTiny: string
   stack: string
-  stackTight: string
+  stackBig: string
+  stackHuge: string
+  stackSmall: string
+  stackTiny: string
+  borderRadius: string
 }
 
 export interface ThemeFonts {
@@ -74,9 +81,16 @@ export const useTheme = () => emotionUseTheme<Theme>()
 
 export const BASE_THEME_SPACE: ThemeSpace = {
   inset: '1rem',
-  insetTight: '0.5rem',
+  insetBig: '1.5rem',
+  insetHuge: '2.25rem',
+  insetSmall: '0.5rem',
+  insetTiny: '0.25rem',
   stack: '0.75rem',
-  stackTight: '0.5rem',
+  stackBig: '1.25rem',
+  stackHuge: '2rem',
+  stackSmall: '0.5rem',
+  stackTiny: '0.25rem',
+  borderRadius: '6px',
 }
 
 export const BASE_FONT_SIZE = 14

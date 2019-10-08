@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
 import React from 'react'
 import styled from '../theming/styled'
 
@@ -9,15 +7,12 @@ type Props = typeof defaultProps &
 const defaultProps = {}
 
 const RowImage = (props: Props) => {
-  // TODO: Theme margins
-  return (
-    <ImageWrapper>
-      <Image {...props} />
-    </ImageWrapper>
-  )
+  return <Image alt={props.alt || ''} {...props} />
 }
 
-const ImageWrapper = styled.div`
+const Image = styled.img<Props>`
+  display: block;
+  max-width: 100%;
   margin-left: ${props => props.theme.space.inset};
   margin-right: ${props => props.theme.space.inset};
   &:first-of-type {
@@ -27,17 +22,6 @@ const ImageWrapper = styled.div`
     margin-right: 0;
   }
 `
-
-const Image = (props: Props) => (
-  <img
-    css={css`
-      display: block;
-      max-width: 100%;
-    `}
-    alt={props.alt || ''}
-    {...props}
-  />
-)
 
 RowImage.defaultProps = defaultProps
 

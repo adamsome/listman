@@ -14,10 +14,14 @@ type Props = typeof defaultProps & {
 const defaultProps = {}
 
 const ThemeProvider = (props: Props) => {
-  const [currentTheme, setCurrentTheme] = useState(THEME_WHITE)
+  const [currentTheme, setCurrentTheme] = useState(props.theme || THEME_WHITE)
+
+  const handleThemeChange = (next: Theme) => {
+    setCurrentTheme(next)
+  }
 
   useEffect(() => {
-    const subscription = getThemeState().subscribe(setCurrentTheme)
+    const subscription = getThemeState().subscribe(handleThemeChange)
     return () => subscription.unsubscribe()
   }, [])
 
@@ -27,8 +31,6 @@ const ThemeProvider = (props: Props) => {
     <EmotionThemeProvider theme={theme}>
       <div
         css={css`
-          height: 100vh;
-          width: 100vw;
           color: ${theme.body};
           background-color: ${theme.bg.body};
         `}
