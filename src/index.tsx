@@ -5,6 +5,13 @@ import { initThemeStore } from './common/theming/theme-store'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
 
+globalThis.log = (msg: any, ...optionalParams: any[]) => {
+  if (process.env.NODE_ENV !== 'production') {
+    // tslint:disable-next-line: no-console
+    console.log(msg, ...optionalParams)
+  }
+}
+
 initThemeStore()
 
 ReactDOM.render(<App />, document.getElementById('root'))

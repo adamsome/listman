@@ -4,3 +4,5 @@ declare module '*.svg' {
   const src: string
   export default src
 }
+
+declare var log: (msg: any, ...optionalParams: any[]) => void

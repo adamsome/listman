@@ -25,9 +25,54 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      body {
+        background: var(--body-bg);
+        color: var(--body-color);
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      /**
+       * Try to load the theme stored in local storage and use its
+       * background and body colors to set a CSS var used in the
+       * body style. Prevents a flash of the wrong colors on load.
+       */
+      ;(function() {
+        var THEME_STORAGE_KEY = 'listman-theme'
+        var QUERY_DARK_THEME = '(prefers-color-scheme: dark)'
+
+        function getLocalStoreTheme() {
+          try {
+            var themeStateJson = localStorage.getItem(THEME_STORAGE_KEY)
+            if (themeStateJson != null) {
+              const themeState = JSON.parse(themeStateJson)
+              return themeState.themes[themeState.selectedIndex]
+            }
+          } catch (err) {}
+        }
+
+        var mql = window.matchMedia(QUERY_DARK_THEME)
+        var bodyBG
+        var bodyColor
+        var theme = getLocalStoreTheme()
+        if (theme) {
+          bodyBG = theme.bg.body
+          bodyColor = theme.body
+        } else if (mql.media === QUERY_DARK_THEME && mql.matches) {
+          bodyBG = 'hsl(0, 0%, 0%)'
+          bodyColor = 'hsl(0, 0%, 75%)'
+        } else {
+          bodyBG = 'hsl(0, 0%, 100%)'
+          bodyColor = 'hsl(0, 0%, 13%)'
+        }
+
+        document.documentElement.style.setProperty('--body-bg', bodyBG)
+        document.documentElement.style.setProperty('--body-color', bodyColor)
+      })()
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
