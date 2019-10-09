@@ -1,13 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import ThemeProvider from '../common/theming/ThemeProvider'
-import RatedList from './RatedList'
-import { SHORT_LIST } from './RatedList.stories'
+import ActionText from './ActionText'
+import ThemeProvider from './theming/ThemeProvider'
 
 const themed = () => (
   <ThemeProvider>
-    <RatedList items={SHORT_LIST} />
+    <ActionText>Test</ActionText>
   </ThemeProvider>
 )
 

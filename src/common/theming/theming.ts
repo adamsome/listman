@@ -1,6 +1,6 @@
-import { useTheme as emotionUseTheme } from 'emotion-theming'
-
 export type ThemeMode = 'light' | 'dark'
+
+export type ThemeShadow = string
 
 export interface ThemeSpace {
   inset: string
@@ -64,7 +64,10 @@ export interface Theme {
   border: {
     body: string
     content: string
+    focus: string
   }
+
+  shadow: ThemeShadow
 
   space: ThemeSpace
 
@@ -77,7 +80,8 @@ export interface HasTheme {
   theme: Theme
 }
 
-export const useTheme = () => emotionUseTheme<Theme>()
+export const BASE_THEME_SHADOW =
+  '0 1px 2px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)'
 
 export const BASE_THEME_SPACE: ThemeSpace = {
   inset: '1rem',
@@ -113,10 +117,40 @@ export const BASE_THEME_FONTS: ThemeFonts = {
     small: calcRemFontSize(12),
     body: calcRemFontSize(14),
     big: calcRemFontSize(16),
-    huge: calcRemFontSize(18),
+    huge: calcRemFontSize(24),
   },
 }
 
 export const BASE_THEME_ANIMATIONS: ThemeAnimations = {
   easing: 'cubic-bezier(0.175, 0.885, 0.335, 1.05)',
 }
+
+export type Size = 'tiny' | 'small' | 'body' | 'big' | 'huge'
+
+export type HasSize = {
+  size: Size
+}
+
+export const SIZES: Size[] = ['tiny', 'small', 'body', 'big', 'huge']
+export const DEFAULT_SIZE_PROP: HasSize = { size: 'body' }
+
+export const getTextBorderRadius = (size: Size): string => {
+  switch (size) {
+    case 'tiny':
+      return '3px'
+    case 'small':
+      return '4px'
+    case 'big':
+      return '6px'
+    case 'huge':
+      return '6px'
+    default:
+      return '5px'
+  }
+}
+
+export const calcTextInsetPadding = (fontSize: string): string =>
+  `calc(${fontSize} / 5 + 0.21rem)`
+
+export const calcTextHeight = (fontSize: string): string =>
+  `calc(${fontSize} + 0.5rem)`

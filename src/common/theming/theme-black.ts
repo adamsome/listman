@@ -1,6 +1,7 @@
 import {
   BASE_THEME_ANIMATIONS,
   BASE_THEME_FONTS,
+  BASE_THEME_SHADOW,
   BASE_THEME_SPACE,
   Theme,
 } from './theming'
@@ -13,7 +14,7 @@ const THEME_BLACK: Theme = {
   body: 'hsl(0, 0%, 75%)',
   bodyInverse: 'hsl(0, 0%, 13%)',
   strong: 'hsl(0, 0%, 88%)',
-  subtle: 'hsl(0, 0%, 50%)',
+  subtle: 'hsl(0, 0%, 45%)',
   hint: 'hsl(0, 0%, 26%)',
 
   primary: 'hsl(206, 73%, 53%)',
@@ -35,8 +36,10 @@ const THEME_BLACK: Theme = {
   border: {
     body: 'hsl(0, 0%, 13%)',
     content: 'hsl(0, 0%, 13%)',
+    focus: 'hsla(206, 43%, 47%, 0.5)',
   },
 
+  shadow: BASE_THEME_SHADOW,
   space: BASE_THEME_SPACE,
   font: BASE_THEME_FONTS,
   animation: BASE_THEME_ANIMATIONS,

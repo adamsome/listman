@@ -1,8 +1,12 @@
-import React from 'react'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import Starrate from 'react-minor-ui'
+import FlexBox, { FlexItem } from '../common/Flexbox'
 import Info from '../common/Info'
 import Row, { RowContent, RowImage, RowTitle } from '../common/Row'
 import Truncated from '../common/Truncated'
+import useHover from '../common/use-hover'
+import Ordinal from './Ordinal'
 import { RatedListArtifact } from './types'
 
 type Props = typeof defaultProps & {
@@ -15,6 +19,7 @@ const defaultProps = {
 
 const ArtifactRow = (props: Props) => {
   const {
+    ordinal,
     title,
     subtitle,
     description,
@@ -24,6 +29,8 @@ const ArtifactRow = (props: Props) => {
     lastInRating,
   } = props.item
 
+  const [hoverRef, hover] = useHover()
+
   const descriptionEl = description ? (
     <Truncated lines={2}>{description}</Truncated>
   ) : (
@@ -31,17 +38,35 @@ const ArtifactRow = (props: Props) => {
   )
 
   return (
-    <Row first={firstInRating === true} last={lastInRating === true}>
-      <RowImage src={image} height={props.height} alt="Sample Art" />
-      <RowContent>
-        <RowTitle subtitle={subtitle} actions={<Starrate rating={rating} />}>
-          {title}
-        </RowTitle>
-        {descriptionEl}
-      </RowContent>
-    </Row>
+    <FlexBox ref={hoverRef} justify="center" alignItems="center">
+      <FlexItem flex="0 0 5rem" css={alignEnd}>
+        <Ordinal lit={hover}>{ordinal}</Ordinal>
+      </FlexItem>
+      <FlexItem flex="auto" css={overflowHidden}>
+        <Row first={firstInRating === true} last={lastInRating === true}>
+          <RowImage src={image} height={props.height} alt="Sample Art" />
+          <RowContent>
+            <RowTitle
+              subtitle={subtitle}
+              actions={<Starrate rating={rating} />}
+            >
+              {title}
+            </RowTitle>
+            {descriptionEl}
+          </RowContent>
+        </Row>
+      </FlexItem>
+    </FlexBox>
   )
 }
+
+const alignEnd = css`
+  text-align: end;
+`
+
+const overflowHidden = css`
+  overflow: hidden;
+`
 
 ArtifactRow.defaultProps = defaultProps
 

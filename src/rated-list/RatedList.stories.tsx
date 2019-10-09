@@ -50,10 +50,14 @@ const createListItems = (maxRating = 4) => {
   const sampleArtifacts = Object.keys(SAMPLE_ROWS)
     .map<RatedListArtifact>((id, i) => {
       const row = SAMPLE_ROWS[id]
+      const image = sampleArtImage
       const rating = getSampleRating(i)
-      return { type: 'artifact', id, image: sampleArtImage, rating, ...row }
+      // Temporarily set to a dummy number
+      const ordinal = -1
+      return { type: 'artifact', id, image, rating, ordinal, ...row }
     })
     .sort(byRatingDesc)
+    .map((artifact, i) => ({ ...artifact, ordinal: i + 1 }))
 
   const groups: RatedListArtifact[][] = range(0, maxRating + 1).map(_ => [])
   const itemsByGroup = sampleArtifacts
@@ -72,5 +76,13 @@ const createListItems = (maxRating = 4) => {
   )
 }
 
+export const SHORT_LIST: RatedListItem[] = [
+  {
+    type: 'rating',
+    rating: 2,
+  },
+]
+
 export const empty = () => <RatedList items={[]} />
+export const shortList = () => <RatedList items={SHORT_LIST} />
 export const fullList = () => <RatedList items={createListItems()} />

@@ -19,6 +19,7 @@ const RatingRow = (props: Props) => {
 }
 
 const Wrapper = styled.div`
+  padding-left: 5rem;
   margin-top: ${props => props.theme.space.stackHuge};
   margin-bottom: ${props => props.theme.space.stackBig};
 `

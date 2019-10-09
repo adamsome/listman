@@ -6,6 +6,7 @@ export interface RatedListRating {
 export interface RatedListArtifact {
   type: 'artifact'
   id: string
+  ordinal: number
   title: string
   subtitle?: string
   description?: string

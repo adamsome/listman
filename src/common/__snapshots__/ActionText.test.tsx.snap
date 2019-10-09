@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.emotion-1 {
+  color: hsl(0,0%,13%);
+  background-color: hsl(0,0%,100%);
+}
+
+.emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 1.000000rem;
+  font-weight: 700;
+  min-width: calc(calc(1.000000rem + 0.5rem) - 2 * calc(1.000000rem / 5 + 0.21rem));
+  border-radius: 5px;
+  cursor: auto;
+  height: calc(1.000000rem + 0.5rem);
+  line-height: calc(1.000000rem + 0.5rem);
+  margin-right: 1rem;
+  padding-left: calc(1.000000rem / 5 + 0.21rem);
+  padding-right: calc(1.000000rem / 5 + 0.21rem);
+  outline: none;
+}
+
+.emotion-0:focus {
+  box-shadow: 0 0 0 2px hsla(206,71%,83%,0.5),0 1px 2px 0 rgba(0,0,0,0.2),0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+<div
+  className="emotion-1"
+>
+  <div
+    className="emotion-0"
+    display="inline-flex"
+    onClick={[Function]}
+  >
+    Test
+  </div>
+</div>
+`;
