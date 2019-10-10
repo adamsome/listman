@@ -6,7 +6,7 @@ type Props = typeof defaultProps &
 
 const defaultProps = {}
 
-const RowImage = (props: Props) => {
+const CardImage = (props: Props) => {
   return <Image alt={props.alt || ''} {...props} />
 }
 
@@ -23,6 +23,6 @@ const Image = styled.img<Props>`
   }
 `
 
-RowImage.defaultProps = defaultProps
+CardImage.defaultProps = defaultProps
 
-export default RowImage
+export default CardImage

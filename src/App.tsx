@@ -2,12 +2,12 @@
 import { css, jsx } from '@emotion/core'
 import React from 'react'
 import Starrate from 'react-minor-ui'
+import Card from './common/Card/Card'
+import CardContent from './common/Card/CardContent'
+import CardImage from './common/Card/CardImage'
+import CardTitle from './common/Card/CardTitle'
+import sampleArtImage from './common/Card/sample-art.png'
 import FlexBox from './common/Flexbox'
-import Row from './common/Row/Row'
-import RowContent from './common/Row/RowContent'
-import RowImage from './common/Row/RowImage'
-import RowTitle from './common/Row/RowTitle'
-import sampleArtImage from './common/Row/sample-art.png'
 import ThemeProvider from './common/theming/ThemeProvider'
 import useThemeStore from './common/theming/use-theme-store'
 import Truncated from './common/Truncated'
@@ -34,15 +34,15 @@ const App = () => {
         >
           <Starrate maxRating={4} size="huge" />
 
-          <Row>
-            <RowImage src={sampleArtImage} height="100px" alt="Sample Art" />
-            <RowContent>
-              <RowTitle subtitle="Sample subtitle" actions={<Starrate />}>
+          <Card>
+            <CardImage src={sampleArtImage} height="100px" alt="Sample Art" />
+            <CardContent>
+              <CardTitle subtitle="Sample subtitle" actions={<Starrate />}>
                 Sample title of a row
-              </RowTitle>
+              </CardTitle>
               <Truncated lines={2}>{longContent}</Truncated>
-            </RowContent>
-          </Row>
+            </CardContent>
+          </Card>
 
           <br />
           <button onClick={onThemeToggleClick}>Toggle Theme</button>

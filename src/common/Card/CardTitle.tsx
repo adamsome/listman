@@ -16,7 +16,7 @@ const defaultProps = {
   lines: 1 as number,
 }
 
-const RowTitle = (props: Props) => {
+const CardTitle = (props: Props) => {
   const { children, subtitle, subtitleLines, actions, lines, ...rest } = props
 
   const _actions = actions
@@ -76,6 +76,6 @@ const Subtitle = (props: TruncatedProps) => {
   )
 }
 
-RowTitle.defaultProps = defaultProps
+CardTitle.defaultProps = defaultProps
 
-export default RowTitle
+export default CardTitle

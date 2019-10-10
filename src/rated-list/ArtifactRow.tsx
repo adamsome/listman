@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import Starrate from 'react-minor-ui'
+import Card, { CardContent, CardImage, CardTitle } from '../common/Card'
 import FlexBox, { FlexItem } from '../common/Flexbox'
 import Info from '../common/Info'
-import Row, { RowContent, RowImage, RowTitle } from '../common/Row'
 import Truncated from '../common/Truncated'
 import useHover from '../common/use-hover'
 import Ordinal from './Ordinal'
@@ -43,18 +43,18 @@ const ArtifactRow = (props: Props) => {
         <Ordinal lit={hover}>{ordinal}</Ordinal>
       </FlexItem>
       <FlexItem flex="auto" css={overflowHidden}>
-        <Row first={firstInRating === true} last={lastInRating === true}>
-          <RowImage src={image} height={props.height} alt="Sample Art" />
-          <RowContent>
-            <RowTitle
+        <Card first={firstInRating === true} last={lastInRating === true}>
+          <CardImage src={image} height={props.height} alt="Sample Art" />
+          <CardContent>
+            <CardTitle
               subtitle={subtitle}
               actions={<Starrate rating={rating} />}
             >
               {title}
-            </RowTitle>
+            </CardTitle>
             {descriptionEl}
-          </RowContent>
-        </Row>
+          </CardContent>
+        </Card>
       </FlexItem>
     </FlexBox>
   )

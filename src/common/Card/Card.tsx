@@ -9,13 +9,13 @@ type Props = typeof defaultProps & {
   onClick?: (event: React.MouseEvent) => void
   children: React.ReactNode
   /**
-   * Set to whether the row is first in a collection to manually control
+   * Set to whether the card is first in a collection to manually control
    * borders. `last` must be set as well. If undefined, component will use
    * css selectors (e.g. `first-of-type`) to control borders.
    */
   first?: boolean
   /**
-   * Set to whether the row is last in a collection to manually control
+   * Set to whether the card is last in a collection to manually control
    * borders. `first` must be set as well. If undefined, component will use
    * css selectors (e.g. `first-of-type`) to control borders.
    */
@@ -24,7 +24,7 @@ type Props = typeof defaultProps & {
 
 const defaultProps = {}
 
-const Row = (props: Props) => {
+const Card = (props: Props) => {
   const { first, last, ...rest } = withButtonProps(props)
   const { onClick } = rest
   const theme = useTheme()
@@ -71,6 +71,6 @@ const Row = (props: Props) => {
   )
 }
 
-Row.defaultProps = defaultProps
+Card.defaultProps = defaultProps
 
-export default Row
+export default Card

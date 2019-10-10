@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions'
 import { range } from 'ramda'
 import React from 'react'
-import { SAMPLE_ROWS } from '../common/Row/Row.stories'
-import sampleArtImage from '../common/Row/sample-art.png'
+import { SAMPLE_CARDS } from '../common/Card/Card.stories'
+import sampleArtImage from '../common/Card/sample-art.png'
 import RatedList from './RatedList'
 import { RatedListArtifact, RatedListItem, RatedListRating } from './types'
 
@@ -53,9 +53,9 @@ const setFirstAndLastInRatingList = (artifacts: RatedListArtifact[] = []) => {
 }
 
 const createListItems = (maxRating = 4) => {
-  const sampleArtifacts = Object.keys(SAMPLE_ROWS)
+  const sampleArtifacts = Object.keys(SAMPLE_CARDS)
     .map<RatedListArtifact>((id, i) => {
-      const row = SAMPLE_ROWS[id]
+      const row = SAMPLE_CARDS[id]
       const image = sampleArtImage
       const rating = getSampleRating(i)
       // Temporarily set to a dummy number

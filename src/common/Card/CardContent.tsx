@@ -10,7 +10,7 @@ type Props = typeof defaultProps & {
 
 const defaultProps = {}
 
-const RowContent = (props: Props) => {
+const CardContent = (props: Props) => {
   const { children, ...rest } = props
 
   return (
@@ -34,6 +34,6 @@ const Content = styled.div`
   display: block;
 `
 
-RowContent.defaultProps = defaultProps
+CardContent.defaultProps = defaultProps
 
-export default RowContent
+export default CardContent
