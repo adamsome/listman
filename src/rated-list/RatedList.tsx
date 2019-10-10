@@ -1,31 +1,46 @@
 import React from 'react'
-import Info from '../common/Info'
+import { DropResult } from 'react-beautiful-dnd'
+import DragDropList from '../common/DragDropList'
 import ArtifactRow from './ArtifactRow'
 import RatingRow from './RatingRow'
-import { RatedListItem } from './types'
+import { RatedListItem, RowMoveEvent } from './types'
 
 type Props = typeof defaultProps & {
   items: RatedListItem[]
+  onMove: (event: RowMoveEvent) => void
 }
 
 const defaultProps = {}
 
 const RatedList = (props: Props): JSX.Element => {
-  const { items } = props
-  return <div>{items.length ? items.map(rowTypeChooser) : none}</div>
+  const { items, onMove } = props
+
+  const onDragEnd = (drop: DropResult) => {
+    log('DnD Drop', drop)
+    onMove({
+      id: drop.draggableId,
+      source: drop.source.index,
+      target: drop.destination && drop.destination.index,
+    })
+  }
+
+  return (
+    <DragDropList
+      items={items}
+      renderer={rowTypeChooser}
+      onDragEnd={onDragEnd}
+    />
+  )
 }
 
 const rowTypeChooser = (item: RatedListItem) => {
   switch (item.type) {
     case 'artifact':
-      return <ArtifactRow key={item.id} item={item} />
+      return <ArtifactRow item={item} />
     case 'rating':
-      const key = item.rating != null ? item.rating : -1
-      return <RatingRow key={key} item={item} />
+      return <RatingRow item={item} />
   }
 }
-
-const none = <Info>No artifacts</Info>
 
 RatedList.defaultProps = defaultProps
 

@@ -1,5 +1,6 @@
 export interface RatedListRating {
   type: 'rating'
+  id: string
   rating?: number
 }
 
@@ -17,3 +18,9 @@ export interface RatedListArtifact {
 }
 
 export type RatedListItem = RatedListRating | RatedListArtifact
+
+export interface RowMoveEvent {
+  id: string
+  source: number
+  target?: number
+}

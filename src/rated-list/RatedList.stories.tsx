@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions'
 import { range } from 'ramda'
 import React from 'react'
 import { SAMPLE_ROWS } from '../common/Row/Row.stories'
@@ -8,7 +9,11 @@ import { RatedListArtifact, RatedListItem, RatedListRating } from './types'
 export default {
   component: RatedList,
   title: 'RatedList',
-  excludeStories: ['SHORT_LIST'],
+  excludeStories: ['actions', 'SHORT_LIST'],
+}
+
+export const actions = {
+  onMove: action('onMove'),
 }
 
 const getSampleRating = (i: number) => {
@@ -35,6 +40,7 @@ const byRatingDesc = (a: RatedListItem, b: RatedListItem): number => {
 
 const createRating = (rating: number): RatedListRating => ({
   type: 'rating',
+  id: String(rating),
   rating,
 })
 
@@ -79,10 +85,13 @@ const createListItems = (maxRating = 4) => {
 export const SHORT_LIST: RatedListItem[] = [
   {
     type: 'rating',
+    id: '2',
     rating: 2,
   },
 ]
 
-export const empty = () => <RatedList items={[]} />
-export const shortList = () => <RatedList items={SHORT_LIST} />
-export const fullList = () => <RatedList items={createListItems()} />
+export const empty = () => <RatedList items={[]} {...actions} />
+export const shortList = () => <RatedList items={SHORT_LIST} {...actions} />
+export const fullList = () => (
+  <RatedList items={createListItems()} {...actions} />
+)
