@@ -1,41 +1,36 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import Starrate from 'react-minor-ui'
-import Card, { CardContent, CardImage, CardTitle } from '../common/Card'
 import FlexBox, { FlexItem } from '../common/Flexbox'
-import Info from '../common/Info'
-import Truncated from '../common/Truncated'
 import useHover from '../common/use-hover'
+import { RatedArtifact } from '../rated-artifact'
+import ArtifactCard from '../rated-artifact/ArtifactCard'
 import Ordinal from './Ordinal'
-import { RatedListArtifact } from './types'
+import { RatedListArtifactRow } from './types'
 
-type Props = typeof defaultProps & {
-  item: RatedListArtifact
-}
+type Props = RatedListArtifactRow & typeof defaultProps & {}
 
-const defaultProps = {
-  height: '100px',
-}
+const defaultProps = {}
 
 const ArtifactRow = (props: Props) => {
-  const {
-    ordinal,
-    title,
-    subtitle,
-    description,
-    image,
-    rating,
-    firstInRating,
-    lastInRating,
-  } = props.item
+  const { ordinal, firstInRating, lastInRating, ...rest } = props
+
+  // TODO: Only artifact ID will be passed down to an ArtifactCardContainer
+  // which will select all artifact props. [TEMP]
+  const ratedArtifact: RatedArtifact = {
+    id: rest.id,
+    rating: rest.rating,
+    text: rest.description,
+    ratedListID: 'sample',
+    artifact: {
+      id: rest.artifactID,
+      type: 'album',
+      title: rest.title,
+      creator: rest.subtitle,
+      artworkID: rest.artworkID,
+    },
+  }
 
   const [hoverRef, hover] = useHover()
-
-  const descriptionEl = description ? (
-    <Truncated lines={2}>{description}</Truncated>
-  ) : (
-    <Info hint>No description.</Info>
-  )
 
   return (
     <FlexBox ref={hoverRef} justify="center" alignItems="center">
@@ -43,18 +38,11 @@ const ArtifactRow = (props: Props) => {
         <Ordinal lit={hover}>{ordinal}</Ordinal>
       </FlexItem>
       <FlexItem flex="auto" css={overflowHidden}>
-        <Card first={firstInRating === true} last={lastInRating === true}>
-          <CardImage src={image} height={props.height} alt="Sample Art" />
-          <CardContent>
-            <CardTitle
-              subtitle={subtitle}
-              actions={<Starrate rating={rating} />}
-            >
-              {title}
-            </CardTitle>
-            {descriptionEl}
-          </CardContent>
-        </Card>
+        <ArtifactCard
+          first={firstInRating}
+          last={lastInRating}
+          {...ratedArtifact}
+        />
       </FlexItem>
     </FlexBox>
   )

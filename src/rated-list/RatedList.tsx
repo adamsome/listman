@@ -3,10 +3,10 @@ import { DropResult } from 'react-beautiful-dnd'
 import DragDropList from '../common/DragDropList'
 import ArtifactRow from './ArtifactRow'
 import RatingRow from './RatingRow'
-import { RatedListItem, RowMoveEvent } from './types'
+import { RatedListRow, RowMoveEvent } from './types'
 
 type Props = typeof defaultProps & {
-  items: RatedListItem[]
+  items: RatedListRow[]
   onMove: (event: RowMoveEvent) => void
 }
 
@@ -33,12 +33,12 @@ const RatedList = (props: Props): JSX.Element => {
   )
 }
 
-const rowTypeChooser = (item: RatedListItem) => {
+const rowTypeChooser = (item: RatedListRow) => {
   switch (item.type) {
     case 'artifact':
-      return <ArtifactRow item={item} />
+      return <ArtifactRow {...item} />
     case 'rating':
-      return <RatingRow item={item} />
+      return <RatingRow {...item} />
   }
 }
 
