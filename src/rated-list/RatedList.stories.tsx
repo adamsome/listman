@@ -3,6 +3,7 @@ import { range } from 'ramda'
 import React from 'react'
 import { SAMPLE_CARDS } from '../common/Card/Card.stories'
 import sampleArtImage from '../common/Card/sample-art.png'
+import { RatedArtifact } from '../rated-artifact'
 import RatedList from './RatedList'
 import { RatedListArtifactRow, RatedListRatingRow, RatedListRow } from './types'
 
@@ -28,14 +29,19 @@ const getSampleRating = (i: number) => {
   }
 }
 
-const byRatingDesc = (a: RatedListRow, b: RatedListRow): number => {
-  if (b.rating == null) {
+const byRatingDesc = (
+  a: RatedListArtifactRow,
+  b: RatedListArtifactRow
+): number => {
+  if (b.ratedArtifact.rating == null) {
     return -1
   }
-  if (a.rating == null) {
+  if (a.ratedArtifact.rating == null) {
     return 1
   }
-  return b.rating.toString().localeCompare(a.rating.toString())
+  return b.ratedArtifact.rating
+    .toString()
+    .localeCompare(a.ratedArtifact.rating.toString())
 }
 
 const createRating = (
@@ -59,37 +65,43 @@ const setFirstAndLastInRatingList = (
 }
 
 const createListItems = (maxRating = 4) => {
-  const sampleArtifacts = Object.keys(SAMPLE_CARDS)
-    .map<RatedListArtifactRow>((id, i) => {
-      const row = SAMPLE_CARDS[id]
-      const artifactID = 'a_' + id
-      const artifact = {
-        artworkID: sampleArtImage,
+  const sampleRows: RatedListArtifactRow[] = Object.keys(SAMPLE_CARDS)
+    .map((id, i) => {
+      const { title, subtitle, description } = SAMPLE_CARDS[id]
+      const ratedArtifact: RatedArtifact = {
+        id,
         rating: getSampleRating(i),
-        ...row,
+        artifact: {
+          id: 'a_' + id,
+          title,
+          type: 'album',
+          creator: subtitle,
+          artworkID: sampleArtImage,
+        },
+        text: description,
       }
       // Temporarily set to a dummy number
       const ordinal = -1
-      return {
+      const row: RatedListArtifactRow = {
         type: 'artifact',
         id,
         ordinal,
         // Temporarily set, will be overriden by 'setFirstAndLast...' fn
         firstInRating: false,
         lastInRating: false,
-        artifactID,
-        ...artifact,
+        ratedArtifact,
       }
+      return row
     })
     .sort(byRatingDesc)
     .map((artifact, i) => ({ ...artifact, ordinal: i + 1 }))
 
   const groups: RatedListArtifactRow[][] = range(0, maxRating + 1).map(_ => [])
-  const itemsByGroup = sampleArtifacts
+  const itemsByGroup = sampleRows
     // Group the artifacts by their rating
-    .reduce((acc, artifact) => {
-      const rating = artifact.rating || 0
-      acc[rating] = [...acc[rating], artifact]
+    .reduce((acc, row) => {
+      const rating = row.ratedArtifact.rating || 0
+      acc[rating] = [...acc[rating], row]
       return acc
     }, groups)
     .map(setFirstAndLastInRatingList)
@@ -116,8 +128,15 @@ export const SHORT_LIST: RatedListRow[] = [
   {
     type: 'artifact',
     id: '1',
-    artifactID: 'a1',
-    title: 'Title',
+    ratedArtifact: {
+      id: 'ra1',
+      artifact: {
+        id: 'a1',
+        type: 'album',
+        title: 'Title',
+      },
+    },
+
     ordinal: 1,
     firstInRating: true,
     lastInRating: true,

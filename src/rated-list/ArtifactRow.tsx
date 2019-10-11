@@ -2,7 +2,6 @@
 import { css, jsx } from '@emotion/core'
 import FlexBox, { FlexItem } from '../common/Flexbox'
 import useHover from '../common/use-hover'
-import { RatedArtifact } from '../rated-artifact'
 import ArtifactCard from '../rated-artifact/ArtifactCard'
 import Ordinal from './Ordinal'
 import { RatedListArtifactRow } from './types'
@@ -12,23 +11,7 @@ type Props = RatedListArtifactRow & typeof defaultProps & {}
 const defaultProps = {}
 
 const ArtifactRow = (props: Props) => {
-  const { ordinal, firstInRating, lastInRating, ...rest } = props
-
-  // TODO: Only artifact ID will be passed down to an ArtifactCardContainer
-  // which will select all artifact props. [TEMP]
-  const ratedArtifact: RatedArtifact = {
-    id: rest.id,
-    rating: rest.rating,
-    text: rest.description,
-    ratedListID: 'sample',
-    artifact: {
-      id: rest.artifactID,
-      type: 'album',
-      title: rest.title,
-      creator: rest.subtitle,
-      artworkID: rest.artworkID,
-    },
-  }
+  const { ordinal, firstInRating, lastInRating, ratedArtifact } = props
 
   const [hoverRef, hover] = useHover()
 

@@ -1,4 +1,4 @@
-import { ArtifactType } from '../rated-artifact'
+import { ArtifactType, RatedArtifact } from '../rated-artifact'
 
 export type RatedListPeriodUnit = 'month' | 'year' | 'decade' | 'all-time'
 
@@ -30,13 +30,7 @@ export interface RatedListArtifactRow {
   ordinal: number
   firstInRating: boolean
   lastInRating: boolean
-  artifactID: string
-  /** TODO: Remove */
-  title: string
-  subtitle?: string
-  description?: string
-  rating?: number
-  artworkID?: string
+  ratedArtifact: RatedArtifact
 }
 
 export type RatedListRow = RatedListRatingRow | RatedListArtifactRow
