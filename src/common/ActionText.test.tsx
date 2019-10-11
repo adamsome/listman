@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
+import themed from '../theming/themed'
 import ActionText from './ActionText'
-import themed from './theming/themed'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')

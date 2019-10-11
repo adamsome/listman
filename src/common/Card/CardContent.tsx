@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
+import styled from '../../theming/styled'
 import { FlexItem } from '../Flexbox'
-import styled from '../theming/styled'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode

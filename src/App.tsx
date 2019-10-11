@@ -1,7 +1,7 @@
 import React from 'react'
-import ThemeProvider from './common/theming/ThemeProvider'
-import useThemeStore from './common/theming/use-theme-store'
 import Example from './Example'
+import ThemeProvider from './theming/ThemeProvider'
+import useThemeStore from './theming/use-theme-store'
 
 const App = () => {
   const [theme] = useThemeStore()

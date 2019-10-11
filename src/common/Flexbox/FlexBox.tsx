@@ -1,4 +1,4 @@
-import styled from '../theming/styled'
+import styled from '../../theming/styled'
 import FlexItem, { FlexItemProps } from './FlexItem'
 
 type Props = FlexItemProps & {

@@ -8,8 +8,8 @@ import CardImage from './common/Card/CardImage'
 import CardTitle from './common/Card/CardTitle'
 import sampleArtImage from './common/Card/sample-art.png'
 import FlexBox from './common/Flexbox'
-import useThemeStore from './common/theming/use-theme-store'
 import Truncated from './common/Truncated'
+import useThemeStore from './theming/use-theme-store'
 
 const longContent =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis rhoncus risus, ut faucibus dui. Aenean bibendum dui et finibus euismod. Nullam luctus nisl at ipsum faucibus, sed volutpat metus ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent dictum ligula at sollicitudin venenatis. Fusce facilisis tincidunt accumsan. Vestibulum vitae efficitur urna. Maecenas aliquam accumsan scelerisque. Morbi molestie, justo sed pretium gravida, erat nulla mattis turpis, non aliquam sapien orci vel arcu. Curabitur id mauris a odio pharetra varius eget quis ipsum. Donec ipsum tellus, bibendum quis maximus eu, facilisis vitae nibh. Maecenas euismod mauris at orci eleifend efficitur.'

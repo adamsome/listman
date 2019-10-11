@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import themed from '../common/theming/themed'
+import themed from '../theming/themed'
 import RatedList from './RatedList'
 import { SHORT_LIST } from './RatedList.stories'
 

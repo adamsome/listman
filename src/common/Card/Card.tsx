@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React from 'react'
+import { useTheme } from '../../theming'
 import FlexBox from '../Flexbox'
-import { useTheme } from '../theming'
 import withButtonProps from '../with-button-props'
 
 type Props = typeof defaultProps & {

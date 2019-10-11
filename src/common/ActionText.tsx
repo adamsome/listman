@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React from 'react'
-import FlexBox from './Flexbox'
 import {
   calcTextHeight,
   calcTextInsetPadding,
   DEFAULT_SIZE_PROP,
   getTextBorderRadius,
   useTheme,
-} from './theming'
+} from '../theming'
+import FlexBox from './Flexbox'
 import withButtonProps from './with-button-props'
 
 type Props = typeof defaultProps & {

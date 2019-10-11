@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from '../theming/styled'
+import styled from '../../theming/styled'
 
 type Props = typeof defaultProps &
   React.PropsWithoutRef<JSX.IntrinsicElements['img']> & {}

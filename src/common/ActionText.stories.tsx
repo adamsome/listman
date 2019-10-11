@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
+import { Size, SIZES } from '../theming'
 import ActionText from './ActionText'
-import { Size, SIZES } from './theming'
 
 export default {
   component: ActionText,

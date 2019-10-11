@@ -1,6 +1,6 @@
 import React from 'react'
 import Starrate from 'react-minor-ui'
-import styled from '../common/theming/styled'
+import styled from '../theming/styled'
 import { RatedListRatingRow } from './types'
 
 type Props = RatedListRatingRow & typeof defaultProps & {}

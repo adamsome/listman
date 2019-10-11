@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React, { Children, cloneElement } from 'react'
+import styled from '../../theming/styled'
 import FlexBox, { FlexItem } from '../Flexbox'
-import styled from '../theming/styled'
 import Truncated, { TruncatedProps } from '../Truncated'
 
 type Props = typeof defaultProps & {

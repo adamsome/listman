@@ -1,6 +1,6 @@
 import React from 'react'
 import ActionText from '../common/ActionText'
-import styled from '../common/theming/styled'
+import styled from '../theming/styled'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode

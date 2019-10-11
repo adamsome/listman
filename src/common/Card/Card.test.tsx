@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import themed from '../theming/themed'
+import themed from '../../theming/themed'
 import { createCard } from './Card.stories'
 
 it('renders without crashing', () => {
