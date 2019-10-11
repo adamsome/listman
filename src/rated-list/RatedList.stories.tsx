@@ -10,7 +10,7 @@ import { RatedListArtifactRow, RatedListRatingRow, RatedListRow } from './types'
 export default {
   component: RatedList,
   title: 'RatedList',
-  excludeStories: ['actions', 'SHORT_LIST'],
+  excludeStories: ['actions', 'SHORT_LIST', 'createSampleArtifactRows'],
 }
 
 export const actions = {
@@ -64,8 +64,8 @@ const setFirstAndLastInRatingList = (
   return artifacts
 }
 
-const createListItems = (maxRating = 4) => {
-  const sampleRows: RatedListArtifactRow[] = Object.keys(SAMPLE_CARDS)
+export const createSampleArtifactRows = (): RatedListArtifactRow[] => {
+  return Object.keys(SAMPLE_CARDS)
     .map((id, i) => {
       const { title, subtitle, description } = SAMPLE_CARDS[id]
       const ratedArtifact: RatedArtifact = {
@@ -95,9 +95,11 @@ const createListItems = (maxRating = 4) => {
     })
     .sort(byRatingDesc)
     .map((artifact, i) => ({ ...artifact, ordinal: i + 1 }))
+}
 
+const createListItems = (maxRating = 4) => {
   const groups: RatedListArtifactRow[][] = range(0, maxRating + 1).map(_ => [])
-  const itemsByGroup = sampleRows
+  const itemsByGroup = createSampleArtifactRows()
     // Group the artifacts by their rating
     .reduce((acc, row) => {
       const rating = row.ratedArtifact.rating || 0

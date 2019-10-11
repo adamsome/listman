@@ -5,10 +5,14 @@ import { RatedList, RatedListResponse } from '../types'
 // Actions
 
 export enum ActionTypes {
+  Select = '[Rated List] Select',
   Fetch = '[Rated List] Fetch',
   FetchSuccess = '[Rated List] Fetch Success',
   FetchError = '[Rated List] Fetch Error',
 }
+
+export const Select = (payload: HasID) =>
+  ({ type: ActionTypes.Select, payload } as const)
 
 export const Fetch = (payload: HasID) =>
   ({ type: ActionTypes.Fetch, payload } as const)
@@ -20,29 +24,41 @@ export const FetchError = (payload: HasID & AppError) =>
   ({ type: ActionTypes.FetchError, payload } as const)
 
 export type Actions =
+  | ReturnType<typeof Select>
   | ReturnType<typeof Fetch>
   | ReturnType<typeof FetchSuccess>
   | ReturnType<typeof FetchError>
 
 // State
 
-interface RatedListState {
-  ratedList?: RatedList
+interface EntityState {
+  ratedList: RatedList | null
   loading: boolean
-  error?: AppError
+  error: AppError | null
 }
 
-type RatedListsByID = Record<string, RatedListState>
+export const initEntityState: EntityState = {
+  ratedList: null,
+  loading: false,
+  error: null,
+}
+
+type RatedListsByID = Record<string, EntityState>
 
 export interface RatedListFeatureState {
   byID: RatedListsByID
+  selectedID: string | null
 }
 
-const initState: RatedListFeatureState = {
+export const initState: RatedListFeatureState = {
   byID: {},
+  selectedID: null,
 }
 
-const ratedList: Reducer<RatedList | undefined, Actions> = (state, action) => {
+const ratedList: Reducer<RatedList | null, Actions> = (
+  state = initEntityState.ratedList,
+  action
+) => {
   switch (action.type) {
     case ActionTypes.FetchSuccess:
       return {
@@ -50,13 +66,16 @@ const ratedList: Reducer<RatedList | undefined, Actions> = (state, action) => {
         artifactIDs: action.payload.artifacts.map(a => a.id),
       }
     case ActionTypes.FetchError:
-      return undefined
+      return null
     default:
       return state
   }
 }
 
-const loading: Reducer<boolean, Actions> = (state = false, action) => {
+const loading: Reducer<boolean, Actions> = (
+  state = initEntityState.loading,
+  action
+) => {
   switch (action.type) {
     case ActionTypes.Fetch:
       return true
@@ -68,11 +87,14 @@ const loading: Reducer<boolean, Actions> = (state = false, action) => {
   }
 }
 
-const error: Reducer<AppError | undefined, Actions> = (state, action) => {
+const error: Reducer<AppError | null, Actions> = (
+  state = initEntityState.error,
+  action
+) => {
   switch (action.type) {
     case ActionTypes.Fetch:
     case ActionTypes.FetchSuccess:
-      return undefined
+      return null
     case ActionTypes.FetchError:
       return action.payload
     default:
@@ -80,7 +102,7 @@ const error: Reducer<AppError | undefined, Actions> = (state, action) => {
   }
 }
 
-const ratedListState = combineReducers<RatedListState>({
+const ratedListState = combineReducers<EntityState>({
   ratedList,
   loading,
   error,
@@ -104,8 +126,21 @@ const byID: Reducer<RatedListsByID, Actions> = (
   }
 }
 
+const selectedID: Reducer<string | null, Actions> = (
+  state = initState.selectedID,
+  action
+) => {
+  switch (action.type) {
+    case ActionTypes.Select:
+      return action.payload.id
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers<RatedListFeatureState>({
   byID,
+  selectedID,
 })
 
 export default reducer

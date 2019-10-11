@@ -11,7 +11,7 @@ const initState: RatedArtifactFeatureState = {
   byID: {},
 }
 
-const entities: Reducer<RatedArtifactsByID, AnyAction> = (
+const byID: Reducer<RatedArtifactsByID, AnyAction> = (
   state = initState.byID,
   _action
 ) => {
@@ -19,7 +19,7 @@ const entities: Reducer<RatedArtifactsByID, AnyAction> = (
 }
 
 const reducer = combineReducers<RatedArtifactFeatureState>({
-  byID: entities,
+  byID,
 })
 
 export default reducer

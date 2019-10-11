@@ -1,12 +1,12 @@
 import { routerMiddleware } from 'connected-react-router'
 import { History } from 'history'
 import { AnyAction, applyMiddleware, compose, createStore, Store } from 'redux'
-import createReducer, { State } from './root'
+import createReducer, { AppState } from './root'
 
 export default function configureStore(
-  initialState: Partial<State> = {},
+  initialState: Partial<AppState> = {},
   history: History<any>
-): Store<State, AnyAction> {
+): Store<AppState, AnyAction> {
   const composeEnhancers = getComposeEnhancers()
   const middlewares = [routerMiddleware(history)]
   const enhancers = [applyMiddleware(...middlewares)]
