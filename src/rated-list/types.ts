@@ -15,6 +15,20 @@ export interface RatedList {
   artifactIDs: string[]
 }
 
+// API
+
+export interface RatedListResponse {
+  id: string
+  type: ArtifactType
+  period: string
+  periodUnit: RatedListPeriodUnit
+  maxRating: number
+  subtitle?: string
+  text?: string
+  layout?: string
+  artifacts: RatedArtifact[]
+}
+
 // View types
 
 export interface RatedListRatingRow {
