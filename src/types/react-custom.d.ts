@@ -1,3 +1,5 @@
+import { compose } from 'redux'
+
 declare module '*.svg' {
   import React = require('react')
   export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>
@@ -5,4 +7,8 @@ declare module '*.svg' {
   export default src
 }
 
-declare var log: (msg: any, ...optionalParams: any[]) => void
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
+  }
+}
