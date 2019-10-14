@@ -11,7 +11,7 @@ import sampleArtImage from './sample-art.png'
 export default {
   component: Card,
   title: 'Card',
-  excludeStories: ['actions', 'createCard', 'SAMPLE_CARDS'],
+  excludeStories: ['actions', 'createCard', 'SAMPLE_CARDS', 'SampleCard'],
 }
 
 export const actions = {
@@ -23,7 +23,7 @@ const shortSubtitle = 'Short subtitle'
 const longDescription =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lobortis rhoncus risus, ut faucibus dui. Aenean bibendum dui et finibus euismod. Nullam luctus nisl at ipsum faucibus, sed volutpat metus ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent dictum ligula at sollicitudin venenatis. Fusce facilisis tincidunt accumsan. Vestibulum vitae efficitur urna. Maecenas aliquam accumsan scelerisque. Morbi molestie, justo sed pretium gravida, erat nulla mattis turpis, non aliquam sapien orci vel arcu. Curabitur id mauris a odio pharetra varius eget quis ipsum. Donec ipsum tellus, bibendum quis maximus eu, facilisis vitae nibh. Maecenas euismod mauris at orci eleifend efficitur.'
 
-interface SampleCard {
+export interface SampleCard {
   title: string
   subtitle?: string
   description?: string

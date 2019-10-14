@@ -6,7 +6,7 @@ import RatingRow from './RatingRow'
 import { RatedListRow, RowMoveEvent } from './types'
 
 type Props = typeof defaultProps & {
-  items: RatedListRow[]
+  items: readonly RatedListRow[]
   onMove: (event: RowMoveEvent) => void
 }
 

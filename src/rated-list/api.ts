@@ -1,12 +1,15 @@
+import { SAMPLE_CARDS } from '../common/Card/Card.stories'
 import { HasID } from '../types'
-import { createSampleArtifactRows } from './RatedList.stories'
+import { convertSampleCardsToArtifacts } from './RatedList.stories'
 import { RatedListResponse } from './types'
 
-export const getRatedList = (
+export const getRatedList = async (
+  _aborter: AbortController,
   id: string | HasID
 ): Promise<RatedListResponse> => {
   const _id = typeof id === 'string' ? id : id.id
-  return Promise.resolve(createMockList(_id))
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  return createMockList(_id)
 }
 
 const createMockList = (id: string): RatedListResponse => ({
@@ -15,5 +18,5 @@ const createMockList = (id: string): RatedListResponse => ({
   maxRating: 5,
   period: '2019',
   periodUnit: 'year',
-  artifacts: createSampleArtifactRows().map(row => row.ratedArtifact),
+  artifacts: convertSampleCardsToArtifacts(SAMPLE_CARDS),
 })

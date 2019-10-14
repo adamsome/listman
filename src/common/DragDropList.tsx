@@ -16,7 +16,7 @@ interface HasID {
 }
 
 type Props<T extends HasID> = typeof defaultProps & {
-  items: T[]
+  items: readonly T[]
   renderer: (
     item: T,
     provided: DraggableProvided,

@@ -1,34 +1,16 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import useFetch from '../common/use-fetch-entity'
+import useFetchEntity from '../common/use-fetch-entity'
 import { getRatedList } from './api'
-import { Fetch, FetchError, FetchSuccess, Select } from './model'
-import { selectSelectedRatedListState } from './model/selectors'
-import RatedList from './RatedList'
-import { RowMoveEvent } from './types'
+import RatedListView from './RatedListView'
 
 const RoutedRatedList = () => {
   const { listID } = useParams()
+  const { data, loading, error } = useFetchEntity(listID, getRatedList)
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    if (listID) {
-      dispatch(Select({ id: listID }))
-    }
-  }, [listID, dispatch])
+  log('RoutedRatedList RENDER', listID, data)
 
-  useFetch(listID, getRatedList, Fetch, FetchSuccess, FetchError)
-
-  const entity = useSelector(selectSelectedRatedListState)
-
-  log('RoutedRatedList RENDER', listID, entity)
-
-  const onMove = (event: RowMoveEvent) => {
-    log('onMove', event, entity)
-  }
-
-  return <RatedList items={[]} onMove={onMove} />
+  return <RatedListView ratedList={data} loading={loading} error={error} />
 }
 
 export default RoutedRatedList
