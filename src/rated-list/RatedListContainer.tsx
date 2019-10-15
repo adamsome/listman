@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { RatedArtifact } from '../rated-artifact'
 import convertRatedArtifactsToListRows from './convert-artifacts-to-rows'
 import RatedList from './RatedList'
-import { RowMoveEvent } from './types'
+import { RatedListRow, RowMoveEvent } from './types'
 
 type Props = typeof defaultProps & {
   artifacts: readonly RatedArtifact[]
@@ -14,7 +14,14 @@ const defaultProps = {
 
 const RatedListContainer = (props: Props) => {
   const { artifacts, maxRating } = props
-  const rows = convertRatedArtifactsToListRows(artifacts, maxRating)
+
+  const [rows, setRows] = useState<readonly RatedListRow[]>(() =>
+    convertRatedArtifactsToListRows(artifacts, maxRating)
+  )
+
+  useEffect(() => {
+    setRows(convertRatedArtifactsToListRows(artifacts, maxRating))
+  }, [artifacts, maxRating])
 
   const onMove = (event: RowMoveEvent) => {
     // tslint:disable-next-line: no-console

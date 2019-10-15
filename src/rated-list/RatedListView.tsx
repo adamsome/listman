@@ -8,7 +8,7 @@ type Props = typeof defaultProps & {}
 const defaultProps = {
   ratedList: null as RatedListResponse | null,
   loading: false,
-  error: false,
+  error: null as Error | null,
 }
 
 const RatedListView = ({ ratedList, loading, error }: Props) => {
