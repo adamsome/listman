@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import FlexBox, { FlexItem } from '../common/Flexbox'
-import useHover from '../common/use-hover'
+import useHover from '../common/hooks/use-hover'
 import ArtifactCard from '../rated-artifact/ArtifactCard'
 import Ordinal from './Ordinal'
 import { RatedListArtifactRow } from './types'

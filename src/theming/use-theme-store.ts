@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react'
 import { THEME_BLACK, THEME_WHITE } from '.'
-import useLocalStorage from '../common/use-local-storage'
-import useMedia from '../common/use-media'
+import useLocalStorage from '../common/hooks/use-local-storage'
+import useMedia from '../common/hooks/use-media'
 import { Theme } from './theming'
 
 interface ThemeState {
