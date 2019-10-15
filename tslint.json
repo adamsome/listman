@@ -10,6 +10,7 @@
     "member-access": [true, "no-public"],
     "no-implicit-dependencies": [true, "dev"],
     "no-submodule-imports": [true, "styled-components/macro", "rxjs/operators"],
+    "no-object-literal-type-assertion": false,
     "object-literal-sort-keys": false,
     "quotemark": false,
     "semicolon": [true, "never"],

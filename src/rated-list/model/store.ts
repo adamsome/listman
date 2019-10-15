@@ -1,21 +1,24 @@
-import { combineReducers, Reducer } from 'redux'
+import { action as createAction, payload, reducer } from 'ts-action'
+import { on } from 'ts-action-immer'
 import { HasID } from '../../types'
 import { RatedList, RatedListResponse } from '../types'
+import { parseRatedListResponse } from './rated-list'
 
 // Actions
 
-export enum ActionTypes {
-  Select = '[Rated List] Select',
-  Load = '[Rated List] Load',
-}
+export const selectRatedList = createAction(
+  '[Rated List] Select',
+  payload<Partial<HasID>>()
+)
 
-export const Select = (payload: HasID) =>
-  ({ type: ActionTypes.Select, payload } as const)
+export const loadRatedList = createAction(
+  '[Rated List] Load',
+  payload<HasID & RatedListResponse>()
+)
 
-export const load = (payload: HasID & RatedListResponse) =>
-  ({ type: ActionTypes.Load, payload } as const)
-
-export type Actions = ReturnType<typeof load> | ReturnType<typeof Select>
+export type Actions =
+  | ReturnType<typeof loadRatedList>
+  | ReturnType<typeof selectRatedList>
 
 // State
 
@@ -24,38 +27,20 @@ export interface RatedListFeatureState {
   selectedID: string | null
 }
 
-const byID: Reducer<Record<string, RatedList>, Actions> = (
-  state = {},
-  action
-) => {
-  switch (action.type) {
-    case ActionTypes.Load:
-      const key = action.payload.id
-      const { artifacts, ...ratedList } = action.payload
-      return {
-        ...state,
-        [key]: {
-          ...ratedList,
-          artifactIDs: artifacts.map(a => a.id),
-        },
-      }
-    default:
-      return state
-  }
+const initialState: RatedListFeatureState = {
+  byID: {},
+  selectedID: null,
 }
 
-const selectedID: Reducer<string | null, Actions> = (state = null, action) => {
-  switch (action.type) {
-    case ActionTypes.Select:
-      return action.payload.id
-    default:
-      return state
-  }
-}
+const rootReducer = reducer(
+  initialState,
+  on(selectRatedList, (state, action) => {
+    state.selectedID = action.payload.id || null
+  }),
+  on(loadRatedList, (state, action) => {
+    const { id } = action.payload
+    state.byID[id] = parseRatedListResponse(action.payload)
+  })
+)
 
-const reducer = combineReducers<RatedListFeatureState>({
-  byID,
-  selectedID,
-})
-
-export default reducer
+export default rootReducer
