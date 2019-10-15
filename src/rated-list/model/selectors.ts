@@ -1,13 +1,11 @@
 import { createSelector } from 'reselect'
 import { AppState } from '../../store/root'
-import { initEntityState } from './store'
 
-const selectRatedListByID = (state: AppState) => state.ratedList.byID
-const selectSelectedRatedListID = (state: AppState) =>
-  state.ratedList.selectedID
+const selectByID = (state: AppState) => state.ratedList.byID
+const selectSelectedID = (state: AppState) => state.ratedList.selectedID
 
-export const selectSelectedRatedListState = createSelector(
-  selectRatedListByID,
-  selectSelectedRatedListID,
-  (byID, selectedID) => (selectedID && byID[selectedID]) || initEntityState
+export const selectSelectedRatedList = createSelector(
+  selectByID,
+  selectSelectedID,
+  (byID, selectedID) => (selectedID && byID[selectedID]) || null
 )
