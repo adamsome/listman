@@ -3,9 +3,9 @@ import { addDecorator, addParameters, configure } from '@storybook/react'
 import { themes } from '@storybook/theming'
 import React, { useLayoutEffect, useState } from 'react'
 import requireContext from 'require-context.macro'
-import { THEME_BLACK, THEME_WHITE } from '../src/common/theming'
-import ThemeProvider from '../src/common/theming/ThemeProvider'
 import '../src/index.css'
+import { THEME_BLACK, THEME_WHITE } from '../src/theming'
+import ThemeProvider from '../src/theming/ThemeProvider'
 
 globalThis.log = (msg: any, ...optionalParams: any[]) => {
   if (process.env.NODE_ENV !== 'production') {
