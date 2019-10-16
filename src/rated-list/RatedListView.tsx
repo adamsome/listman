@@ -7,7 +7,7 @@ type Props = typeof defaultProps & {}
 
 const defaultProps = {
   ratedList: null as RatedListResponse | null,
-  rows: null as readonly RatedListRow[] | null,
+  rows: null as RatedListRow[] | null,
   loading: false,
   error: null as Error | null,
 }

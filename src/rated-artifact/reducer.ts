@@ -1,6 +1,6 @@
 import { isType, reducer } from 'ts-action'
 import { on } from 'ts-action-immer'
-import { loadRatedList, setCurrentRatedList } from '../rated-list/actions'
+import { loadList, setCurrentList } from '../rated-list/actions'
 import { RatedArtifact } from './types'
 
 export interface RatedArtifactFeatureState {
@@ -13,10 +13,10 @@ const initialState: RatedArtifactFeatureState = {
 
 const rootReducer = reducer(
   initialState,
-  on(loadRatedList, setCurrentRatedList, (state, action) => {
+  on(loadList, setCurrentList, (state, action) => {
     action.payload.artifacts.forEach(artifact => {
       const { id } = artifact
-      if (isType(action, loadRatedList) || state.byID[id] == null) {
+      if (isType(action, loadList) || state.byID[id] == null) {
         state.byID[id] = artifact
       }
     })

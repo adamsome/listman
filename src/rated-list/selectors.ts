@@ -1,33 +1,26 @@
 import { createSelector } from 'reselect'
 import { RatedArtifact } from '../rated-artifact'
-import { selectRatedArtifactsByID } from '../rated-artifact/selectors'
 import { AppState } from '../store/root'
-import { convertArtifactsToRatedListRows } from './converters'
+import { convertArtifactsToRatedListRows } from './rated-list-row'
 import { initialMaxRating } from './reducer'
 
 export const selectRatedListsByID = (state: AppState) => state.ratedList.byID
-export const selectRatedList = (state: AppState) => state.ratedList.current
+export const selectRatedListCurrent = (state: AppState) =>
+  state.ratedList.current
 
-export const selectRatedListMaxRating = createSelector(
-  selectRatedList,
-  (list): number => (list ? list.maxRating : initialMaxRating)
+export const selectCurrentRatedListMaxRating = createSelector(
+  selectRatedListCurrent,
+  (current): number =>
+    current.list ? current.list.maxRating : initialMaxRating
 )
 
-export const selectRatedListArtifacts = createSelector(
-  selectRatedList,
-  selectRatedArtifactsByID,
-  (list, artifactsByID): RatedArtifact[] | null => {
-    if (list == null) {
-      return null
-    }
-    const ids = list ? list.artifactIDs : []
-    const artifacts = ids.map(id => artifactsByID[id])
-    return artifacts.filter(artifact => artifact != null)
-  }
+export const selectCurrentRatedListArtifacts = createSelector(
+  selectRatedListCurrent,
+  (current): RatedArtifact[] | null => (current ? current.artifacts : null)
 )
 
 export const selectRatedListRows = createSelector(
-  selectRatedListArtifacts,
-  selectRatedListMaxRating,
+  selectCurrentRatedListArtifacts,
+  selectCurrentRatedListMaxRating,
   convertArtifactsToRatedListRows
 )

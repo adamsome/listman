@@ -5,7 +5,7 @@ import RatedListRows from './RatedListRows'
 import { SHORT_LIST } from './RatedListRows.stories'
 
 export const actions = {
-  onMove: () => null,
+  onDragEnd: () => null,
 }
 
 it('renders without crashing', () => {

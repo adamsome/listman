@@ -1,13 +1,16 @@
-import { action as createAction, payload } from 'ts-action'
-import { HasID } from '../types'
-import { RatedListResponse } from './types'
-
-export const loadRatedList = createAction(
+import { action, payload } from 'ts-action'
+import { RatedListResponse, RowMoveEvent } from './types'
+export const loadList = action(
   '[Rated List] Load',
-  payload<HasID & RatedListResponse>()
+  payload<RatedListResponse>()
 )
 
-export const setCurrentRatedList = createAction(
+export const setCurrentList = action(
   '[Rated List] Set Current',
-  payload<HasID & RatedListResponse>()
+  payload<RatedListResponse>()
+)
+
+export const moveCurrentListRow = action(
+  '[Rated List] Move Current Row',
+  payload<RowMoveEvent>()
 )

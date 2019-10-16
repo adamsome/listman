@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../common/hooks/use-async-task'
-import { setCurrentRatedList } from './actions'
+import { setCurrentList } from './actions'
 import { getRatedList } from './api'
 import RatedListView from './RatedListView'
-import { selectRatedList, selectRatedListRows } from './selectors'
+import { selectRatedListCurrent, selectRatedListRows } from './selectors'
 
 const RoutedRatedList = () => {
   const { listID: id } = useParams()
@@ -14,11 +14,11 @@ const RoutedRatedList = () => {
 
   useEffect(() => {
     if (data) {
-      dispatch(setCurrentRatedList(data))
+      dispatch(setCurrentList(data))
     }
   }, [dispatch, data])
 
-  const ratedList = useSelector(selectRatedList)
+  const ratedList = useSelector(selectRatedListCurrent)
   const rows = useSelector(selectRatedListRows)
 
   trace('component', 'RoutedRatedList', id, ratedList, rows)

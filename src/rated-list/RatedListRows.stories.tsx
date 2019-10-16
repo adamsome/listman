@@ -3,7 +3,7 @@ import React from 'react'
 import { SAMPLE_CARDS, SampleCard } from '../common/Card/Card.stories'
 import sampleArtImage from '../common/Card/sample-art.png'
 import { RatedArtifact } from '../rated-artifact'
-import { convertArtifactsToRatedListRows } from './converters'
+import { convertArtifactsToRatedListRows } from './rated-list-row'
 import RatedListRows from './RatedListRows'
 import { RatedListRow } from './types'
 
@@ -14,7 +14,7 @@ export default {
 }
 
 export const actions = {
-  onMove: action('onMove'),
+  onDragEnd: action('onDragEnd'),
 }
 
 const getSampleRating = (i: number) => {

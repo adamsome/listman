@@ -3,27 +3,17 @@ import { DropResult } from 'react-beautiful-dnd'
 import DragDropList from '../common/DragDropList'
 import ArtifactRow from './ArtifactRow'
 import RatingRow from './RatingRow'
-import { RatedListRow, RowMoveEvent } from './types'
+import { RatedListRow } from './types'
 
 type Props = typeof defaultProps & {
   rows: readonly RatedListRow[]
-  onMove: (event: RowMoveEvent) => void
+  onDragEnd: (event: DropResult) => void
 }
 
 const defaultProps = {}
 
 const RatedListRows = (props: Props): JSX.Element => {
-  const { rows, onMove } = props
-
-  const onDragEnd = (drop: DropResult) => {
-    log('DnD Drop', drop)
-    onMove({
-      id: drop.draggableId,
-      source: drop.source.index,
-      target: drop.destination && drop.destination.index,
-    })
-  }
-
+  const { rows, onDragEnd } = props
   return (
     <DragDropList
       items={rows}

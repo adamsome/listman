@@ -55,4 +55,5 @@ export interface RowMoveEvent {
   id: string
   source: number
   target?: number
+  rows: RatedListRow[]
 }
