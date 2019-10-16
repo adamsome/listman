@@ -6,14 +6,14 @@ import RatingRow from './RatingRow'
 import { RatedListRow, RowMoveEvent } from './types'
 
 type Props = typeof defaultProps & {
-  items: readonly RatedListRow[]
+  rows: readonly RatedListRow[]
   onMove: (event: RowMoveEvent) => void
 }
 
 const defaultProps = {}
 
-const RatedList = (props: Props): JSX.Element => {
-  const { items, onMove } = props
+const RatedListRows = (props: Props): JSX.Element => {
+  const { rows, onMove } = props
 
   const onDragEnd = (drop: DropResult) => {
     log('DnD Drop', drop)
@@ -26,7 +26,7 @@ const RatedList = (props: Props): JSX.Element => {
 
   return (
     <DragDropList
-      items={items}
+      items={rows}
       renderer={rowTypeChooser}
       onDragEnd={onDragEnd}
     />
@@ -42,6 +42,6 @@ const rowTypeChooser = (item: RatedListRow) => {
   }
 }
 
-RatedList.defaultProps = defaultProps
+RatedListRows.defaultProps = defaultProps
 
-export default RatedList
+export default RatedListRows

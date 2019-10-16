@@ -3,13 +3,13 @@ import React from 'react'
 import { SAMPLE_CARDS, SampleCard } from '../common/Card/Card.stories'
 import sampleArtImage from '../common/Card/sample-art.png'
 import { RatedArtifact } from '../rated-artifact'
-import convertRatedArtifactsToListRows from './convert-artifacts-to-rows'
-import RatedList from './RatedList'
+import convertArtifactsToRatedListRows from './model/rated-list-rows'
+import RatedListRows from './RatedListRows'
 import { RatedListRow } from './types'
 
 export default {
-  component: RatedList,
-  title: 'RatedList',
+  component: RatedListRows,
+  title: 'RatedListRows',
   excludeStories: ['actions', 'SHORT_LIST', 'convertSampleCardsToArtifacts'],
 }
 
@@ -52,7 +52,7 @@ export const convertSampleCardsToArtifacts = (
 
 const createListItems = (maxRating = 4) => {
   const ratedArtifacts = convertSampleCardsToArtifacts(SAMPLE_CARDS)
-  return convertRatedArtifactsToListRows(ratedArtifacts, maxRating)
+  return convertArtifactsToRatedListRows(ratedArtifacts, maxRating) || []
 }
 
 export const SHORT_LIST: RatedListRow[] = [
@@ -80,8 +80,8 @@ export const SHORT_LIST: RatedListRow[] = [
   },
 ]
 
-export const empty = () => <RatedList items={[]} {...actions} />
-export const shortList = () => <RatedList items={SHORT_LIST} {...actions} />
+export const empty = () => <RatedListRows rows={[]} {...actions} />
+export const shortList = () => <RatedListRows rows={SHORT_LIST} {...actions} />
 export const fullList = () => (
-  <RatedList items={createListItems()} {...actions} />
+  <RatedListRows rows={createListItems()} {...actions} />
 )

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../common/hooks/use-async-task'
 import { getRatedList } from './api'
-import { loadRatedList, selectRatedList } from './model'
-import { selectSelectedRatedList } from './model/selectors'
+import { setCurrentRatedList } from './model'
+import { selectRatedList, selectRatedListRows } from './model/selectors'
 import RatedListView from './RatedListView'
 
 const RoutedRatedList = () => {
@@ -13,20 +13,24 @@ const RoutedRatedList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(selectRatedList({ id }))
-  }, [dispatch, id])
-
-  useEffect(() => {
     if (data) {
-      dispatch(loadRatedList(data))
+      dispatch(setCurrentRatedList(data))
     }
   }, [dispatch, data])
 
-  const ratedList = useSelector(selectSelectedRatedList)
+  const ratedList = useSelector(selectRatedList)
+  const rows = useSelector(selectRatedListRows)
 
-  log('RoutedRatedList RENDER', id, ratedList)
+  trace('component', 'RoutedRatedList', id, ratedList, rows)
 
-  return <RatedListView ratedList={data} loading={loading} error={error} />
+  return (
+    <RatedListView
+      ratedList={data}
+      rows={rows}
+      loading={loading}
+      error={error}
+    />
+  )
 }
 
 export default RoutedRatedList

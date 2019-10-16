@@ -1,25 +1,26 @@
-import { AnyAction, combineReducers, Reducer } from 'redux'
+import { isType, reducer } from 'ts-action'
+import { on } from 'ts-action-immer'
+import { loadRatedList, setCurrentRatedList } from '../../rated-list/model'
 import { RatedArtifact } from '../types'
 
-type RatedArtifactsByID = Record<string, RatedArtifact>
-
 export interface RatedArtifactFeatureState {
-  byID: RatedArtifactsByID
+  byID: Record<string, RatedArtifact>
 }
 
-const initState: RatedArtifactFeatureState = {
+const initialState: RatedArtifactFeatureState = {
   byID: {},
 }
 
-const byID: Reducer<RatedArtifactsByID, AnyAction> = (
-  state = initState.byID,
-  _action
-) => {
-  return state
-}
+const rootReducer = reducer(
+  initialState,
+  on(loadRatedList, setCurrentRatedList, (state, action) => {
+    action.payload.artifacts.forEach(artifact => {
+      const { id } = artifact
+      if (isType(action, loadRatedList) || state.byID[id] == null) {
+        state.byID[id] = artifact
+      }
+    })
+  })
+)
 
-const reducer = combineReducers<RatedArtifactFeatureState>({
-  byID,
-})
-
-export default reducer
+export default rootReducer
