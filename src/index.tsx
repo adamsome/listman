@@ -8,13 +8,26 @@ import * as serviceWorker from './serviceWorker'
 import configureStore from './store/configure-store'
 import history from './store/history'
 
-const global = globalThis as any
-global.log = (msg: any, ...optionalParams: any[]) => {
+const _log: typeof log = (msg, ...optionalParams) => {
   if (process.env.NODE_ENV !== 'production') {
     // tslint:disable-next-line: no-console
     console.log(msg, ...optionalParams)
   }
 }
+const _trace: typeof trace = (name, msg, ...optionalParams) => {
+  if (process.env.NODE_ENV !== 'production') {
+    // tslint:disable-next-line: no-console
+    console.log(
+      `%c ${name}`,
+      'color: gray; font-weight: lighter;',
+      msg,
+      ...optionalParams
+    )
+  }
+}
+const global = globalThis as any
+global.log = _log
+global.trace = _trace
 
 const store = configureStore({}, history)
 

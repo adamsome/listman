@@ -56,11 +56,11 @@ const createLocalStore = <T>(provider: MaybeLocalStorage = window) => ({
       console.error(`Local Store: None found.`)
       return getValue(initValue)
     }
-    log(`Local Store: Get '${key}'.`)
+    trace('local-store', `${key} get`)
     try {
       const json = provider.localStorage.getItem(key)
       const item = json ? (JSON.parse(json) as T) : getValue(initValue)
-      log(`Local Store: Got '${key}'`, item)
+      trace('local-store', `${key} get res`, item)
       return item
     } catch (e) {
       // tslint:disable-next-line: no-console
@@ -74,7 +74,7 @@ const createLocalStore = <T>(provider: MaybeLocalStorage = window) => ({
       console.error(`Local Store: None found.`)
       return
     }
-    log(`Local Store: Set '${key}'.`, value)
+    trace('local-store', `${key} set`, value)
     try {
       const json = JSON.stringify(value)
       provider.localStorage.setItem(key, json)

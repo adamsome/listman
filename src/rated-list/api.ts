@@ -1,15 +1,19 @@
 import { SAMPLE_CARDS } from '../common/Card/Card.stories'
 import { HasID } from '../types'
-import { convertSampleCardsToArtifacts } from './RatedList.stories'
+import { convertSampleCardsToArtifacts } from './RatedListRows.stories'
 import { RatedListResponse } from './types'
 
 export const getRatedList = async (
   _aborter: AbortController,
   id: string | HasID
 ): Promise<RatedListResponse> => {
+  const op = 'Get Rated List'
   const _id = typeof id === 'string' ? id : id.id
+  trace('api', op, id)
   await new Promise(resolve => setTimeout(resolve, 1000))
-  return createMockList(_id)
+  const data = createMockList(_id)
+  trace('api', op, id, 'res', data)
+  return data
 }
 
 const createMockList = (id: string): RatedListResponse => ({
