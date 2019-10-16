@@ -1,7 +1,7 @@
 import { isType, reducer } from 'ts-action'
 import { on } from 'ts-action-immer'
-import { loadRatedList, setCurrentRatedList } from '../../rated-list/model'
-import { RatedArtifact } from '../types'
+import { loadRatedList, setCurrentRatedList } from '../rated-list/actions'
+import { RatedArtifact } from './types'
 
 export interface RatedArtifactFeatureState {
   byID: Record<string, RatedArtifact>

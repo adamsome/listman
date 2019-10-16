@@ -1,10 +1,24 @@
 import { range } from 'ramda'
-import { RatedArtifact } from '../../rated-artifact'
+import { RatedArtifact } from '../rated-artifact'
 import {
+  RatedList,
   RatedListArtifactRow,
   RatedListRatingRow,
+  RatedListResponse,
   RatedListRow,
-} from '../types'
+} from './types'
+
+// Response
+
+export const parseRatedListResponse = (res: RatedListResponse): RatedList => {
+  const { artifacts, ...rest } = res
+  return {
+    ...rest,
+    artifactIDs: artifacts.map(artifact => artifact.id),
+  }
+}
+
+// Rated List Rows
 
 const byRatingDesc = (
   a: RatedListArtifactRow,
@@ -84,7 +98,7 @@ const insertRatingRowsIntoArtifactRows = (
   )
 }
 
-const convertArtifactsToRatedListRows = (
+export const convertArtifactsToRatedListRows = (
   ratedArtifacts: readonly RatedArtifact[] | null,
   maxRating = 4
 ): readonly RatedListRow[] | null => {
@@ -94,5 +108,3 @@ const convertArtifactsToRatedListRows = (
   const artifactRows = convertRatedArtifactsToArtifactRows(ratedArtifacts)
   return insertRatingRowsIntoArtifactRows(artifactRows, maxRating)
 }
-
-export default convertArtifactsToRatedListRows

@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
-import { RatedArtifact } from '../../rated-artifact'
-import { selectRatedArtifactsByID } from '../../rated-artifact/model/selectors'
-import { AppState } from '../../store/root'
-import convertArtifactsToRatedListRows from './rated-list-rows'
-import { initialMaxRating } from './store'
+import { RatedArtifact } from '../rated-artifact'
+import { selectRatedArtifactsByID } from '../rated-artifact/selectors'
+import { AppState } from '../store/root'
+import { convertArtifactsToRatedListRows } from './converters'
+import { initialMaxRating } from './reducer'
 
 export const selectRatedListsByID = (state: AppState) => state.ratedList.byID
 export const selectRatedList = (state: AppState) => state.ratedList.current

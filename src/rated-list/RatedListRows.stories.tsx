@@ -3,7 +3,7 @@ import React from 'react'
 import { SAMPLE_CARDS, SampleCard } from '../common/Card/Card.stories'
 import sampleArtImage from '../common/Card/sample-art.png'
 import { RatedArtifact } from '../rated-artifact'
-import convertArtifactsToRatedListRows from './model/rated-list-rows'
+import { convertArtifactsToRatedListRows } from './converters'
 import RatedListRows from './RatedListRows'
 import { RatedListRow } from './types'
 

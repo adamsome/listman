@@ -1,26 +1,8 @@
-import { action as createAction, isType, payload, reducer } from 'ts-action'
+import { isType, reducer } from 'ts-action'
 import { on } from 'ts-action-immer'
-import { HasID } from '../../types'
-import { RatedList, RatedListResponse } from '../types'
-import { parseRatedListResponse } from './rated-list'
-
-// Actions
-
-export const loadRatedList = createAction(
-  '[Rated List] Load',
-  payload<HasID & RatedListResponse>()
-)
-
-export const setCurrentRatedList = createAction(
-  '[Rated List] Set Current',
-  payload<HasID & RatedListResponse>()
-)
-
-export type Actions =
-  | ReturnType<typeof loadRatedList>
-  | ReturnType<typeof setCurrentRatedList>
-
-// State
+import { loadRatedList, setCurrentRatedList } from './actions'
+import { parseRatedListResponse } from './converters'
+import { RatedList } from './types'
 
 export interface RatedListFeatureState {
   byID: Record<string, RatedList>

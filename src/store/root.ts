@@ -2,8 +2,8 @@ import { connectRouter, RouterState } from 'connected-react-router'
 import { AnyAction, combineReducers, Reducer } from 'redux'
 import ratedArtifact, {
   RatedArtifactFeatureState,
-} from '../rated-artifact/model'
-import ratedList, { RatedListFeatureState } from '../rated-list/model'
+} from '../rated-artifact/reducer'
+import ratedList, { RatedListFeatureState } from '../rated-list/reducer'
 import theming, { ThemingState } from '../theming/store'
 import history from './history'
 
