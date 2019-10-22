@@ -23,12 +23,12 @@ const RatedListRows = (props: Props): JSX.Element => {
   )
 }
 
-const rowTypeChooser = (item: RatedListRow) => {
-  switch (item.type) {
+const rowTypeChooser = (row: RatedListRow) => {
+  switch (row.type) {
     case 'artifact':
-      return <ArtifactRow {...item} />
+      return <ArtifactRow {...row} />
     case 'rating':
-      return <RatingRow {...item} />
+      return <RatingRow {...row} />
   }
 }
 

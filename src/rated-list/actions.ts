@@ -1,5 +1,6 @@
 import { action, payload } from 'ts-action'
 import { RatedListResponse, RowMoveEvent } from './types'
+
 export const loadList = action(
   '[Rated List] Load',
   payload<RatedListResponse>()
