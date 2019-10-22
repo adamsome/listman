@@ -21,7 +21,7 @@ const Debug = () => {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 2.5rem;
+        height: 2rem;
         border-top: 1px solid rgba(218, 160, 0, 0.33);
         padding-left: 2.5rem;
         overflow: hidden;
@@ -32,7 +32,7 @@ const Debug = () => {
         a,
         button {
           margin-right: ${theme.space.insetSmall};
-          color: ${theme.subtle};
+          color: ${theme.body};
         }
       `}
     >
