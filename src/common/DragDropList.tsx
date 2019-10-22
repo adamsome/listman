@@ -22,16 +22,22 @@ type Props<T extends HasID> = typeof defaultProps & {
     provided: DraggableProvided,
     snapshot: DraggableStateSnapshot
   ) => JSX.Element
+  disableIndices?: number[]
   onDragEnd: (drop: DropResult) => void
 }
 
 const defaultProps = {}
 
 const DragDropList = <T extends HasID>(props: Props<T>): JSX.Element => {
-  const { items, renderer, onDragEnd } = props
+  const { items, renderer, disableIndices, onDragEnd } = props
 
-  const draggable = (item: T, i: number) => (
-    <Draggable key={item.id} draggableId={item.id} index={i}>
+  const createItem = (item: T, i: number) => (
+    <Draggable
+      key={item.id}
+      draggableId={item.id}
+      isDragDisabled={disableIndices != null && disableIndices.includes(i)}
+      index={i}
+    >
       {(provided, snapshot) => (
         <div>
           <div
@@ -53,7 +59,7 @@ const DragDropList = <T extends HasID>(props: Props<T>): JSX.Element => {
       <Droppable droppableId="rated-list-drop">
         {(provided, _) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            {items.length ? items.map(draggable) : none}
+            {items.length ? items.map(createItem) : none}
             {provided.placeholder}
           </div>
         )}

@@ -19,6 +19,7 @@ const RatedListRows = (props: Props): JSX.Element => {
       items={rows}
       renderer={rowTypeChooser}
       onDragEnd={onDragEnd}
+      disableIndices={[0]}
     />
   )
 }
