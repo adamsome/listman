@@ -2,8 +2,8 @@ import { reducer } from 'ts-action'
 import { on } from 'ts-action-immer'
 import { RatedArtifact } from '../rated-artifact'
 import { loadList, moveCurrentListRow, setCurrentList } from './actions'
-import { parseRatedListResponse } from './rated-list-response'
-import { reorderArtifactsByRowMove } from './rated-list-row'
+import { parseRatedListResponse } from './model/parse-response'
+import { reorderArtifactsByRowMove } from './model/reorder-artifacts'
 import { RatedList } from './types'
 
 export interface RatedListFeatureState {

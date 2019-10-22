@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { RatedArtifact } from '../rated-artifact'
 import { AppState } from '../store/root'
-import { convertArtifactsToRatedListRows } from './rated-list-row'
+import { createRows } from './model/create-rows'
 import { initialMaxRating } from './reducer'
 
 export const selectRatedListsByID = (state: AppState) => state.ratedList.byID
@@ -22,5 +22,5 @@ export const selectCurrentRatedListArtifacts = createSelector(
 export const selectRatedListRows = createSelector(
   selectCurrentRatedListArtifacts,
   selectCurrentRatedListMaxRating,
-  convertArtifactsToRatedListRows
+  createRows
 )

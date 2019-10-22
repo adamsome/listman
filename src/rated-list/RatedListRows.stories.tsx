@@ -3,7 +3,7 @@ import React from 'react'
 import { SAMPLE_CARDS, SampleCard } from '../common/Card/Card.stories'
 import sampleArtImage from '../common/Card/sample-art.png'
 import { RatedArtifact } from '../rated-artifact'
-import { convertArtifactsToRatedListRows } from './rated-list-row'
+import { createRows } from './model/create-rows'
 import RatedListRows from './RatedListRows'
 import { RatedListRow } from './types'
 
@@ -52,7 +52,7 @@ export const convertSampleCardsToArtifacts = (
 
 const createListItems = (maxRating = 4) => {
   const ratedArtifacts = convertSampleCardsToArtifacts(SAMPLE_CARDS)
-  return convertArtifactsToRatedListRows(ratedArtifacts, maxRating) || []
+  return createRows(ratedArtifacts, maxRating) || []
 }
 
 export const SHORT_LIST: RatedListRow[] = [
