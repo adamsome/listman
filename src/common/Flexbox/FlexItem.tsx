@@ -1,4 +1,4 @@
-import styled from '../../theming/styled'
+import styled from '@emotion/styled'
 
 export type FlexItemProps = typeof defaultProps & {
   flex?: string

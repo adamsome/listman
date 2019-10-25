@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React from 'react'
-import { Theme, useTheme } from '../theming'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode
@@ -13,11 +12,10 @@ const defaultProps = {}
 
 const Info = (props: Props) => {
   const { hint, error, children, ...rest } = props
-  const theme = useTheme()
   return (
     <div
       css={css`
-        color: ${getColor(props, theme)};
+        color: ${getColor(props)};
       `}
       {...rest}
     >
@@ -26,15 +24,15 @@ const Info = (props: Props) => {
   )
 }
 
-const getColor = (props: Props, theme: Theme) => {
+const getColor = (props: Props) => {
   // TODO: Create Color type in theming
   if (props.error) {
-    return theme.warning
+    return 'var(--warning)'
   }
   if (props.hint) {
-    return theme.hint
+    return 'var(--hint)'
   }
-  return theme.subtle
+  return 'var(--subtle)'
 }
 
 Info.defaultProps = defaultProps

@@ -1,6 +1,6 @@
 import React from 'react'
 import Starrate from 'react-minor-ui'
-import styled from '../theming/styled'
+import styles from './RatingRow.module.css'
 import { RatedListRatingRow } from './types'
 
 type Props = RatedListRatingRow & typeof defaultProps & {}
@@ -9,18 +9,11 @@ const defaultProps = {}
 
 const RatingRow = (props: Props) => {
   return (
-    <Wrapper {...props}>
+    <div className={styles.error}>
       <Starrate rating={props.rating} size="huge" disabled />
-    </Wrapper>
+    </div>
   )
 }
-
-const Wrapper = styled.div<Props>`
-  padding-left: 5rem;
-  padding-top: ${props =>
-    props.occursAfterArtifact && props.theme.space.stackHuge};
-  padding-bottom: ${props => props.theme.space.stackBig};
-`
 
 RatingRow.defaultProps = defaultProps
 

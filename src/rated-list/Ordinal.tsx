@@ -1,6 +1,6 @@
+import styled from '@emotion/styled'
 import React from 'react'
 import ActionText from '../common/ActionText'
-import styled from '../theming/styled'
 
 type Props = typeof defaultProps & {
   children: React.ReactNode
@@ -14,7 +14,7 @@ const Ordinal = (props: Props) => {
 }
 
 const SubtleActionText = styled(ActionText)`
-  color: ${props => props.theme.subtle};
+  color: var(--subtle);
 `
 
 Ordinal.defaultProps = defaultProps

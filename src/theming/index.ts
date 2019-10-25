@@ -1,5 +1,2 @@
 export * from './theming'
-export { default as THEME_WHITE } from './theme-white'
-export { default as THEME_BLACK } from './theme-black'
-export { default as useTheme } from './use-theme'
-export { default as useThemeStore } from './use-theme-store'
+export { default as Themer } from './Themer'

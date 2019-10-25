@@ -6,7 +6,6 @@ import {
   calcTextInsetPadding,
   DEFAULT_SIZE_PROP,
   getTextBorderRadius,
-  useTheme,
 } from '../theming'
 import FlexBox from './Flexbox'
 import withButtonProps from './with-button-props'
@@ -33,35 +32,33 @@ const ActionText = (props: Props) => {
       onClick(event)
     }
   }
-  const theme = useTheme()
-  const fontSize = theme.font.size[size]
-  const insetPadding = calcTextInsetPadding(fontSize)
-  const height = calcTextHeight(fontSize)
+  const insetPadding = calcTextInsetPadding(size)
+  const height = calcTextHeight(size)
   return (
     <FlexBox
       display="inline-flex"
       justify="center"
       onClick={click}
       css={css`
-        font-size: ${fontSize};
-        font-weight: ${theme.font.weightBold};
+        font-size: ${`var(--font-size-${size})`};
+        font-weight: var(--font-weight-bold);
         /** Min width is 2x the inset padding subtracted from the height */
         min-width: calc(${height} - 2 * ${insetPadding});
         border-radius: ${getTextBorderRadius(size)};
-        background: ${onClick && lit && theme.bg.bodyDim};
+        background: ${onClick && lit && 'var(--bg-body-dim)'};
         cursor: ${onClick ? 'pointer' : 'auto'};
         height: ${height};
         line-height: ${height};
-        margin-right: ${theme.space.inset};
+        margin-right: var(--space-inset);
         padding-left: ${insetPadding};
         padding-right: ${insetPadding};
         outline: none;
 
         &:hover {
-          background: ${onClick && (hoverBG || theme.bg.bodyLit)};
+          background: ${onClick && (hoverBG || 'var(--bg-body-lit)')};
         }
         &:focus {
-          box-shadow: 0 0 0 2px ${theme.border.focus}, ${theme.shadow};
+          box-shadow: 0 0 0 2px var(--border-focus), var(--shadow);
         }
       `}
       {...rest}

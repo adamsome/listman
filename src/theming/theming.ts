@@ -1,129 +1,124 @@
+import blackTheme from './themes/black'
+import whiteTheme from './themes/white'
+
 export type ThemeMode = 'light' | 'dark'
 
-export type ThemeShadow = string
-
-export interface ThemeSpace {
-  inset: string
-  insetBig: string
-  insetHuge: string
-  insetSmall: string
-  insetTiny: string
-  stack: string
-  stackBig: string
-  stackHuge: string
-  stackSmall: string
-  stackTiny: string
-  borderRadius: string
-}
-
-export interface ThemeFonts {
-  family: string
-  weight: number
-  weightBold: number
-  weightBlack: number
-  size: {
-    tiny: string
-    small: string
-    body: string
-    big: string
-    huge: string
-  }
-}
-
-export interface ThemeAnimations {
-  easing: string
-}
-
 export interface Theme {
-  id: string | number
-  name: string
-  mode: ThemeMode
+  'id': string | number
+  'name': string
+  'mode': ThemeMode
 
-  body: string
-  bodyInverse: string
-  strong: string
-  subtle: string
-  hint: string
+  'body': string
+  'body-inverse': string
+  'strong': string
+  'subtle': string
+  'hint': string
 
-  primary: string
-  primaryLit: string
-  secondary: string
-  secondaryLit: string
-  warning: string
-  warningLit: string
+  'primary': string
+  'primary-lit': string
+  'secondary': string
+  'secondary-lit': string
+  'warning': string
+  'warning-lit': string
 
-  bg: {
-    body: string
-    bodyLit: string
-    bodyDim: string
-    content: string
-    contentLit: string
-    contentDim: string
-  }
+  'bg-body': string
+  'bg-body-lit': string
+  'bg-body-dim': string
+  'bg-content': string
+  'bg-content-lit': string
+  'bg-content-dim': string
 
-  border: {
-    body: string
-    content: string
-    focus: string
-  }
+  'border-body': string
+  'border-content': string
+  'border-focus': string
 
-  shadow: ThemeShadow
+  'shadow': string
 
-  space: ThemeSpace
+  'space-inset': string
+  'space-inset-big': string
+  'space-inset-huge': string
+  'space-inset-small': string
+  'space-inset-tiny': string
+  'space-stack': string
+  'space-stack-big': string
+  'space-stack-huge': string
+  'space-stack-small': string
+  'space-stack-tiny': string
+  'space-border-radius': string
 
-  font: ThemeFonts
+  'font-family': string
+  'font-weight': number
+  'font-weight-bold': number
+  'font-weight-black': number
+  'font-size-tiny': string
+  'font-size-small': string
+  'font-size-body': string
+  'font-size-big': string
+  'font-size-huge': string
 
-  animation: ThemeAnimations
+  'animation-easing': string
 }
 
-export interface HasTheme {
-  theme: Theme
+const BASE_FONT_SIZE = 14
+
+const DEFAULTS: Partial<Theme> = {
+  'shadow': '0 1px 2px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)',
+
+  'space-inset': '1rem',
+  'space-inset-big': '1.5rem',
+  'space-inset-huge': '2.25rem',
+  'space-inset-small': '0.5rem',
+  'space-inset-tiny': '0.25rem',
+  'space-stack': '0.75rem',
+  'space-stack-big': '1.25rem',
+  'space-stack-huge': '2rem',
+  'space-stack-small': '0.5rem',
+  'space-stack-tiny': '0.25rem',
+  'space-border-radius': '6px',
+
+  'animation-easing': 'cubic-bezier(0.175, 0.885, 0.335, 1.05)',
 }
-
-export const BASE_THEME_SHADOW =
-  '0 1px 2px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)'
-
-export const BASE_THEME_SPACE: ThemeSpace = {
-  inset: '1rem',
-  insetBig: '1.5rem',
-  insetHuge: '2.25rem',
-  insetSmall: '0.5rem',
-  insetTiny: '0.25rem',
-  stack: '0.75rem',
-  stackBig: '1.25rem',
-  stackHuge: '2rem',
-  stackSmall: '0.5rem',
-  stackTiny: '0.25rem',
-  borderRadius: '6px',
-}
-
-export const BASE_FONT_SIZE = 14
 
 const calcRemFontSize = (size: number, baseSize = BASE_FONT_SIZE): string =>
   `${(size / baseSize).toFixed(6)}rem`
 
-export const BASE_THEME_FONTS: ThemeFonts = {
-  family:
+const DEFAULT_FONTS: Partial<Theme> = {
+  'font-family':
     `-apple-system, '.SFNSText-Regular', ` +
     `'San Francisco', BlinkMacSystemFont, ` +
     `'Segoe UI', 'Helvetica Neue', Helvetica, Arial, ` +
     `'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', ` +
     `sans-serif`,
-  weight: 400,
-  weightBold: 700,
-  weightBlack: 900,
-  size: {
-    tiny: calcRemFontSize(11),
-    small: calcRemFontSize(12),
-    body: calcRemFontSize(14),
-    big: calcRemFontSize(16),
-    huge: calcRemFontSize(24),
-  },
+  'font-weight': 400,
+  'font-weight-bold': 700,
+  'font-weight-black': 900,
+  'font-size-tiny': calcRemFontSize(11),
+  'font-size-small': calcRemFontSize(12),
+  'font-size-body': calcRemFontSize(14),
+  'font-size-big': calcRemFontSize(16),
+  'font-size-huge': calcRemFontSize(24),
 }
 
-export const BASE_THEME_ANIMATIONS: ThemeAnimations = {
-  easing: 'cubic-bezier(0.175, 0.885, 0.335, 1.05)',
+const getThemeByID = (themeID: string = 'white'): Partial<Theme> => {
+  switch (themeID) {
+    case 'black':
+      return blackTheme
+    case 'white':
+    default:
+      return whiteTheme
+  }
 }
+
+const applyThemeDefaults = (theme: Partial<Theme>): Theme => {
+  return {
+    ...DEFAULTS,
+    ...DEFAULT_FONTS,
+    ...theme,
+  } as Theme
+}
+
+export const getTheme = (themeID?: string | null): Theme =>
+  applyThemeDefaults(getThemeByID(themeID || undefined))
 
 export type Size = 'tiny' | 'small' | 'body' | 'big' | 'huge'
 
@@ -149,8 +144,8 @@ export const getTextBorderRadius = (size: Size): string => {
   }
 }
 
-export const calcTextInsetPadding = (fontSize: string): string =>
-  `calc(${fontSize} / 5 + 0.21rem)`
+export const calcTextInsetPadding = (size: Size): string =>
+  `calc(var(--font-size-${size}) / 5 + 0.21rem)`
 
-export const calcTextHeight = (fontSize: string): string =>
-  `calc(${fontSize} + 0.5rem)`
+export const calcTextHeight = (size: Size): string =>
+  `calc(var(--font-size-${size}) + 0.5rem)`

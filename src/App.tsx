@@ -3,14 +3,12 @@ import { Route, Switch } from 'react-router-dom'
 import Debug from './Debug'
 import Example from './Example'
 import RoutedRatedList from './rated-list/RoutedRatedList'
-import ThemeProvider from './theming/ThemeProvider'
-import useThemeStore from './theming/use-theme-store'
+import { Themer } from './theming'
 
 const App = () => {
-  const [theme] = useThemeStore()
-
+  trace('component', 'App')
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Switch>
         <Route
           path="/users/:userID/lists/:listID"
@@ -18,8 +16,9 @@ const App = () => {
         />
         <Route path="/" children={<Example />} />
       </Switch>
+      <Themer />
       <Debug />
-    </ThemeProvider>
+    </>
   )
 }
 

@@ -28,7 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import useEventListener from './use-event-listener'
 
 interface MaybeLocalStorage {
@@ -47,28 +47,26 @@ interface StorageEvent {
   newValue: string
 }
 
-const getValue = <T>(v: T | (() => T)): T => (v instanceof Function ? v() : v)
-
 const createLocalStore = <T>(provider: MaybeLocalStorage = window) => ({
-  get(key: string, initValue: T | (() => T)): T {
+  get(key: string): T | null {
     if (!provider.localStorage) {
       // tslint:disable-next-line: no-console
       console.error(`Local Store: None found.`)
-      return getValue(initValue)
+      return null
     }
     trace('local-store', `${key} get`)
     try {
       const json = provider.localStorage.getItem(key)
-      const item = json ? (JSON.parse(json) as T) : getValue(initValue)
+      const item = json ? (JSON.parse(json) as T) : null
       trace('local-store', `${key} get res`, item)
       return item
     } catch (e) {
       // tslint:disable-next-line: no-console
       console.error(`Local Store: Get error for '${key}'`, e)
-      return getValue(initValue)
+      return null
     }
   },
-  set(key: string, value: T | (() => T)): void {
+  set(key: string, value: T | null): void {
     if (!provider.localStorage) {
       // tslint:disable-next-line: no-console
       console.error(`Local Store: None found.`)
@@ -86,27 +84,30 @@ const createLocalStore = <T>(provider: MaybeLocalStorage = window) => ({
 })
 
 const useLocalStorage = <T>(
-  key: string,
-  initValue: T | (() => T)
-): readonly [T, React.Dispatch<React.SetStateAction<T>>] => {
+  key: string
+): readonly [T | null, (value: T | null) => void] => {
   const localStore = useMemo(() => createLocalStore<T>(), [])
 
-  const [storeItem, setStoreItem] = useState<T>(() =>
-    localStore.get(key, initValue)
+  const [storeItem, _setStoreItem] = useState<T | null>(() =>
+    localStore.get(key)
   )
 
   useEventListener<StorageEvent>('storage', e => {
     if (e.key === key) {
-      const item = JSON.parse(e.newValue) as T
+      const item = JSON.parse(e.newValue) as T | null | undefined
       if (storeItem !== item) {
-        setStoreItem(item != null ? item : getValue(initValue))
+        _setStoreItem(item || null)
       }
     }
   })
 
-  useEffect(() => {
-    localStore.set(key, storeItem)
-  }, [storeItem, key, localStore])
+  const setStoreItem = useCallback(
+    (value: T | null) => {
+      _setStoreItem(value)
+      localStore.set(key, value)
+    },
+    [_setStoreItem, localStore, key]
+  )
 
   return [storeItem, setStoreItem]
 }

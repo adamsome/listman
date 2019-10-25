@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 import React, { Children, cloneElement } from 'react'
-import styled from '../../theming/styled'
 import FlexBox, { FlexItem } from '../Flexbox'
 import Truncated, { TruncatedProps } from '../Truncated'
 
@@ -36,10 +36,10 @@ const CardTitle = (props: Props) => {
 
 const Wrapper = styled(FlexBox)`
   &:not(:last-of-type) {
-    margin-bottom: ${props => props.theme.space.stackSmall};
+    margin-bottom: var(--space-stack-small);
   }
   &:not(:first-of-type) {
-    margin-top: ${props => props.theme.space.stackSmall};
+    margin-top: var(--space-stack-small);
   }
 `
 
@@ -50,9 +50,9 @@ const titlesWrapper = (hasActions: boolean) => css`
 `
 
 const StyledTitle = styled.h4`
-  color: ${props => props.theme.strong};
-  font-size: ${props => props.theme.font.size.big};
-  font-weight: ${props => props.theme.font.weightBold};
+  color: var(--strong);
+  font-size: var(--font-size-big);
+  font-weight: var(--font-weight-bold);
   margin: 0;
 `
 
@@ -65,7 +65,7 @@ const Title = (props: TruncatedProps) => {
 }
 
 const StyledSubtitle = styled(StyledTitle)`
-  color: ${props => props.theme.subtle};
+  color: var(--subtle);
 `
 
 const Subtitle = (props: TruncatedProps) => {

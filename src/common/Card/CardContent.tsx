@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 import React from 'react'
-import styled from '../../theming/styled'
 import { FlexItem } from '../Flexbox'
 
 type Props = typeof defaultProps & {
@@ -21,11 +19,11 @@ const CardContent = (props: Props) => {
 }
 
 const StyledFlexItem = styled(FlexItem)`
-  margin-right: ${props => props.theme.space.inset};
-  padding-top: ${props => props.theme.space.stack};
-  padding-bottom: ${props => props.theme.space.stack};
+  margin-right: var(--space-inset);
+  padding-top: var(--space-stack);
+  padding-bottom: var(--space-stack);
   &:first-of-type {
-    margin-left: ${props => props.theme.space.inset};
+    margin-left: var(--space-inset);
   }
   overflow: hidden;
 `

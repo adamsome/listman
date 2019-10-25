@@ -4,8 +4,7 @@ import { themes } from '@storybook/theming'
 import React, { useLayoutEffect, useState } from 'react'
 import requireContext from 'require-context.macro'
 import '../src/index.css'
-import { THEME_BLACK, THEME_WHITE } from '../src/theming'
-import ThemeProvider from '../src/theming/ThemeProvider'
+import { setTheme } from '../src/theming/Themer'
 
 globalThis.log = (msg: any, ...optionalParams: any[]) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -40,10 +39,18 @@ const ThemeWrapper = (props: { children: React.ReactNode }) => {
     return () => channel.removeListener(DARK_MODE_CHANNEL, setDark)
   }, [channel, setDark])
 
+  setTheme(isDark ? 'black' : 'white')
+
   return (
-    <ThemeProvider theme={isDark ? THEME_BLACK : THEME_WHITE}>
-      <div style={{ padding: '1rem' }}>{props.children}</div>
-    </ThemeProvider>
+    <div
+      style={{
+        padding: '1rem',
+        color: 'var(--body)',
+        background: 'var(--bg-body)',
+      }}
+    >
+      {props.children}
+    </div>
   )
 }
 

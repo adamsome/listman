@@ -1,5 +1,5 @@
+import styled from '@emotion/styled'
 import React from 'react'
-import styled from '../../theming/styled'
 
 type Props = typeof defaultProps &
   React.PropsWithoutRef<JSX.IntrinsicElements['img']> & {}
@@ -13,8 +13,8 @@ const CardImage = (props: Props) => {
 const Image = styled.img<Props>`
   display: block;
   max-width: 100%;
-  margin-left: ${props => props.theme.space.inset};
-  margin-right: ${props => props.theme.space.inset};
+  margin-left: var(--space-inset);
+  margin-right: var(--space-inset);
   &:first-of-type {
     margin-left: 0;
   }

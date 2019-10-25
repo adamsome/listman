@@ -4,7 +4,7 @@ import ratedArtifact, {
   RatedArtifactFeatureState,
 } from '../rated-artifact/reducer'
 import ratedList, { RatedListFeatureState } from '../rated-list/reducer'
-import theming, { ThemingState } from '../theming/store'
+import theming, { ThemingState } from '../theming/reducer'
 import history from './history'
 
 export interface AppState {

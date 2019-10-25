@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React from 'react'
-import { useTheme } from '../../theming'
 import FlexBox from '../Flexbox'
 import withButtonProps from '../with-button-props'
 
@@ -27,7 +26,6 @@ const defaultProps = {}
 const Card = (props: Props) => {
   const { first, last, ...rest } = withButtonProps(props)
   const { onClick } = rest
-  const theme = useTheme()
 
   const manualBorders = first != null && last != null
   const manualFirst = manualBorders && first
@@ -36,34 +34,37 @@ const Card = (props: Props) => {
   return (
     <FlexBox
       css={css`
-        background-color: ${theme.bg.content};
-        border: 1px solid ${theme.border.content};
-        border-top-left-radius: ${manualFirst && theme.space.borderRadius};
-        border-top-right-radius: ${manualFirst && theme.space.borderRadius};
-        border-bottom-left-radius: ${manualLast && theme.space.borderRadius};
-        border-bottom-right-radius: ${manualLast && theme.space.borderRadius};
+        background-color: var(--bg-content);
+        border: 1px solid var(--border-content);
+        border-top-left-radius: ${manualFirst && 'var(--space-border-radius)'};
+        border-top-right-radius: ${manualFirst && 'var(--space-border-radius)'};
+        border-bottom-left-radius: ${manualLast &&
+          'var(--space-border-radius)'};
+        border-bottom-right-radius: ${manualLast &&
+          'var(--space-border-radius)'};
         border-bottom-width: ${manualLast ? '1px' : 0};
         &:first-of-type {
-          border-top-left-radius: ${!manualBorders && theme.space.borderRadius};
+          border-top-left-radius: ${!manualBorders &&
+            'var(--space-border-radius)'};
           border-top-right-radius: ${!manualBorders &&
-            theme.space.borderRadius};
+            'var(--space-border-radius)'};
         }
         &:last-of-type {
           border-bottom-left-radius: ${!manualBorders &&
-            theme.space.borderRadius};
+            'var(--space-border-radius)'};
           border-bottom-right-radius: ${!manualBorders &&
-            theme.space.borderRadius};
+            'var(--space-border-radius)'};
           border-bottom-width: ${!manualBorders && '1px'};
         }
-        color: ${theme.body};
+        color: var(--body);
         cursor: ${onClick ? 'pointer' : 'auto'};
-        font-size: ${theme.font.size.body};
+        font-size: var(--font-size-body);
         outline: none;
         overflow: hidden;
         text-align: start;
 
         &:focus {
-          box-shadow: 0 0 0 2px ${theme.border.focus}, ${theme.shadow};
+          box-shadow: 0 0 0 2px var(--border-focus), var(--shadow);
         }
       `}
       {...rest}
