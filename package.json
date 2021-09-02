@@ -61,7 +61,7 @@
     "connected-react-router": "^6.5.2",
     "emotion-theming": "^10.0.19",
     "history": "^4.10.1",
-    "immer": "^4.0.1",
+    "immer": "^9.0.6",
     "ramda": "^0.26.1",
     "react": "^16.10.1",
     "react-beautiful-dnd": "^11.0.5",
